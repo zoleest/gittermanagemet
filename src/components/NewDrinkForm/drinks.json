@@ -1,0 +1,34 @@
+{ "drinks":
+  [
+    {
+      "drinkName": "Sör",
+      "alcoholPercent": 0.04
+
+    },
+    {
+      "drinkName": "Bor",
+      "alcoholPercent": 0.07
+    },
+    {
+      "drinkName": "Pálinka",
+      "alcoholPercent": 0.40,
+      "image": "https://cdn.kifli.hu/cdn-cgi/image/f=auto,w=650/https://cdn.kifli.hu/uploads/Tart%C3%B3s_Ital_Special_%C3%81llateledel/Tart%C3%B3s/Logo/F%C3%BCty%C3%BCl%C5%91s.jpg"
+    },
+    {
+      "drinkName": "Martini",
+      "alcoholPercent": 0.16
+    },
+    {
+      "drinkName": "Whisky",
+      "alcoholPercent": 0.50
+    },
+    {
+      "drinkName": "Vodka",
+      "alcoholPercent": 0.38
+    },
+    {
+      "drinkName": "Pezsgő",
+      "alcoholPercent": 0.115
+    }
+  ]
+}
