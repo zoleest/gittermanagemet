@@ -2,33 +2,40 @@
   [
     {
       "drinkName": "Sör",
-      "alcoholPercent": 0.04
+      "alcoholPercent": 0.04,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYOKmJxdLSYNk3Dx0AuCf8GSphEfAg02fq_w&usqp=CAU"
 
     },
     {
       "drinkName": "Bor",
-      "alcoholPercent": 0.07
+      "alcoholPercent": 0.07,
+      "image": "https://assets.cntraveller.in/photos/60ba24cbe341ff812178ec43/1:1/w_768,h_768,c_limit/Red-wine-1366x768.jpg"
     },
     {
       "drinkName": "Pálinka",
       "alcoholPercent": 0.40,
-      "image": "https://cdn.kifli.hu/cdn-cgi/image/f=auto,w=650/https://cdn.kifli.hu/uploads/Tart%C3%B3s_Ital_Special_%C3%81llateledel/Tart%C3%B3s/Logo/F%C3%BCty%C3%BCl%C5%91s.jpg"
+      "image": "https://s13emagst.akamaized.net/products/32332/32331327/images/res_d54bf97ad564b0657d7f1425422ecbd9.jpg"
     },
     {
       "drinkName": "Martini",
-      "alcoholPercent": 0.16
+      "alcoholPercent": 0.16,
+      "image": "https://www.liquor.com/thmb/TiIfuripVmSK3TLWtRhKsLkU_Q8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dry-martini-720x720-primary-a6de08f8cd584ad88520287922578bcb.jpg"
     },
     {
       "drinkName": "Whisky",
-      "alcoholPercent": 0.50
+      "alcoholPercent": 0.50,
+      "image": "https://cdn.shopify.com/s/files/1/0552/6110/2264/products/MON112-L-1_1200x.jpg?v=1643215326"
     },
     {
       "drinkName": "Vodka",
-      "alcoholPercent": 0.38
+      "alcoholPercent": 0.38,
+      "image": "https://m.media-amazon.com/images/I/51PFSO5zzvL._AC_.jpg"
     },
     {
       "drinkName": "Pezsgő",
-      "alcoholPercent": 0.115
+      "alcoholPercent": 0.115,
+      "image": "https://borguru.cdn.shoprenter.hu/custom/borguru/image/cache/w500h500wt1q100/RIEDEL/Vinum/riedel-vinum-prestige-cuvee.jpg?lastmod=1668413028.1605095487"
+
     }
   ]
 }
