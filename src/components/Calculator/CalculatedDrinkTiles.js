@@ -81,6 +81,7 @@ class CalculatedDrinkTiles extends React.Component {
                                     <h2>Elfogyasztott mennyiség: {this.state.drinkAmount}ml</h2>
                                     <h2>Eltelt idő: {this.state.drinkTime === "0"?"Kevesebb, mint 1":"Legalább " + this.state.drinkTime}  óra</h2>
                                     <h3>Alkoholtartalom: {this.state.drinkPercentage * 100}%</h3>
+                                    <h4>{(this.state.drinkName==="Rémy Martin konyak" && this.props.keyid === 0)?"HÉ! ÉN IS KÉREK!":""}</h4>
                                 </div>
                                 <div className="col-3 my-auto mx-auto">
                                     <button className="btn btn-danger" onClick={this.deleteDrink}>Törlés</button>

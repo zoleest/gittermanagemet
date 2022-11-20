@@ -68,7 +68,9 @@ class CalculatorPerMill extends React.Component {
                   returnableText =  <div
                         className={"Calculator-display-calculated-data m-3 p-3 text-white text-center" + ((actualPercentage > 0) ? " bg-danger" : " bg-success")}>
                         Vérezrelék: {actualPercentage} <br/>
-                        <h1>Ezen a ponton már nem vagy képes gépjárműbe ülni. Az Isten legyen irgalmas a lelkedhez.</h1>
+                        <h1>Ezen a ponton már nem vagy képes gépjárműbe ülni. <br/>
+                            A Mindenható Erő legyen irgalmas a lelkedhez.</h1>
+
                     </div>;
                 }
 
