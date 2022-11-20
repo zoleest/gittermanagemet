@@ -4,7 +4,7 @@ import React from 'react';
 import CalculatorDisplay from "./components/Calculator/CalculatorDisplay";
 import HumanControlForm from "./components/HumanControlForm/HumanControlForm";
 import {UserData} from "./contexts/UserData";
-
+import Yor from './Images/Yor.png';
 
 class App extends React.Component {
 
@@ -26,9 +26,10 @@ class App extends React.Component {
         return (
             <div className="content">
                 <div className="header w-100 bg-dark">
-                    <div className="header-text-box w-100">
+                    <div className="header-text-box w-100 position-relative ">
                         <h1>Véralkoholszint mérő</h1>
                         <h1>Véralkoholszint mérő</h1>
+                        <img src={Yor} id="yor" alt="Yor" title="Yor"/>
                     </div>
                     <p className="text-white"><a className="link-light" href="https://www.youtube.com/watch?v=V2E8mIFKMl8&ab_channel=kriszpy">Kibaszott
                         mérés!</a></p>
@@ -39,7 +40,7 @@ class App extends React.Component {
                         <div className="Calculated-values col-12 col-lg-9">
                             <CalculatorDisplay/>
                         </div>
-                        <div className="col-12 col-lg-3">
+                        <div className="col-12 col-lg-3 pe-lg-4">
                             <div className="New-drink-form-container">
                                 <NewDrinkForm appReference={this}/>
                             </div>

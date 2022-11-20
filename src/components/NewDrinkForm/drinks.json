@@ -1,11 +1,6 @@
 {
   "drinks": [
     {
-      "drinkName": "Víz",
-      "alcoholPercent": 0.00,
-      "image": "https://hips.hearstapps.com/ame-prod-goodhousekeeping-assets.s3.amazonaws.com/main/embedded/25836/glass_water.jpg"
-    },
-    {
       "drinkName": "Sör",
       "alcoholPercent": 0.04,
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYOKmJxdLSYNk3Dx0AuCf8GSphEfAg02fq_w&usqp=CAU"
