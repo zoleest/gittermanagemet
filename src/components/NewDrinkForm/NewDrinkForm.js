@@ -96,7 +96,7 @@ class NewDrinkForm extends React.Component {
                         </label>
                         <label className="col-12 mt-2">
                             Elfogyasztott mennyiség: <input className="form-control" name="new_drink_amount"
-                                                            type="number" placeholder="500(ml)" required/>
+                                                            type="number" placeholder="500(ml)" min="1" required/>
                         </label>
                         <label className="col-12 mt-2">
                             Eltelt idő: <input className="form-control" name="new_drink_elapsed_time" type="number"

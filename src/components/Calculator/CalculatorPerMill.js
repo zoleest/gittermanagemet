@@ -38,11 +38,15 @@ class CalculatorPerMill extends React.Component {
 
     render() {
 
-        let actualPercentage = this.calculateBloodPerMille();
+        this.context.bac = this.calculateBloodPerMille();
         let remainingTime = this.calculateReamainingTime();
 
 
-        if (this.context.weight === 0 || this.context.gender === "" || this.context.drunkenDrinks.filter(drink => drink.displayed === true).length === 0) {
+        if (this.context.weight === 0 || this.context.gender === "") {
+            return (<div className="Calculator-display m-3 p-3 text-dark text-center bg-info">
+                Kérlek add meg az adataidat, mielőtt folytatnánk!
+            </div>)
+        } else if (this.context.drunkenDrinks.filter(drink => drink.displayed === true).length === 0) {
             return (<div className="Calculator-display m-3 p-3 text-white text-center bg-success">
                 Nem fogyasztottál alkoholt!
             </div>)
@@ -50,24 +54,24 @@ class CalculatorPerMill extends React.Component {
 
             let returnableText;
 
-            if (actualPercentage > 0) {
+            if (this.context.bac > 0) {
 
-                if(actualPercentage < 4){
+                if ( this.context.bac < 4) {
                     returnableText =
                         <div
-                            className={"Calculator-display-calculated-data m-3 p-3 text-white text-center" + ((actualPercentage > 0) ? " bg-danger" : " bg-success")}>
-                            Vérezrelék: {actualPercentage} <br/>
+                            className={"Calculator-display-calculated-data m-3 p-3 text-white text-center" + (( this.context.bac > 0) ? " bg-danger" : " bg-success")}>
+                            Vérezrelék: {this.context.bac} <br/>
                             Ittaság várható időtartama: legalább további {remainingTime} óra. <br/>
                             <h1><FontAwesomeIcon icon={'ban'}/> <FontAwesomeIcon icon={'car'}/> NE ÜLJ GÉPJÁRMŰBE! <a
                                 href="https://www.youtube.com/watch?v=a0DbzUe-r4Q&ab_channel=Fazlija"
                                 className="helicopter-link"><FontAwesomeIcon icon={'helicopter'}/></a> <FontAwesomeIcon
                                 icon={'ban'}/></h1>
                         </div>;
-                }else{
+                } else {
 
-                  returnableText =  <div
-                        className={"Calculator-display-calculated-data m-3 p-3 text-white text-center" + ((actualPercentage > 0) ? " bg-danger" : " bg-success")}>
-                        Vérezrelék: {actualPercentage} <br/>
+                    returnableText = <div
+                        className={"Calculator-display-calculated-data m-3 p-3 text-white text-center" + (( this.context.bac > 0) ? " bg-danger" : " bg-success")}>
+                        Vérezrelék: { this.context.bac} <br/>
                         <h1>Ezen a ponton már nem vagy képes gépjárműbe ülni. <br/>
                             A Mindenható Erő legyen irgalmas a lelkedhez.</h1>
 
@@ -91,4 +95,5 @@ class CalculatorPerMill extends React.Component {
     }
 
 }
-    export default CalculatorPerMill;
+
+export default CalculatorPerMill;

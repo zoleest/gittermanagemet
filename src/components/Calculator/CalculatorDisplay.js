@@ -2,6 +2,7 @@ import React from 'react';
 import CalculatorPerMill from "./CalculatorPerMill";
 import {UserData} from "../../contexts/UserData"
 import CalculatedDrinks from "./CalculatedDrinks";
+import CalculatorInfoBox from "./CalculatorInfoBox";
 
 
 class CalculatorDisplay extends React.Component{
@@ -30,6 +31,7 @@ class CalculatorDisplay extends React.Component{
 
                 <CalculatedDrinks />
                 <CalculatorPerMill />
+                <CalculatorInfoBox  />
             </div>
         );
 

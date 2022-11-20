@@ -15,7 +15,7 @@ class App extends React.Component {
             "gender": "",
             "amountPerHour": Array(24).fill(0),
             "drunkenDrinks": [],
-            "consumeRate": 0
+            "consumeRate": 0,
         }
 
 

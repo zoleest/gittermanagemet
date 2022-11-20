@@ -10,15 +10,15 @@
       "alcoholPercent": 0.04,
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYOKmJxdLSYNk3Dx0AuCf8GSphEfAg02fq_w&usqp=CAU"
     },
-    {
-      "drinkName": "Bor",
-      "alcoholPercent": 0.07,
-      "image": "https://assets.cntraveller.in/photos/60ba24cbe341ff812178ec43/1:1/w_768,h_768,c_limit/Red-wine-1366x768.jpg"
-    },
-    {
+        {
       "drinkName": "Pezsgő",
       "alcoholPercent": 0.115,
       "image": "https://borguru.cdn.shoprenter.hu/custom/borguru/image/cache/w500h500wt1q100/RIEDEL/Vinum/riedel-vinum-prestige-cuvee.jpg?lastmod=1668413028.1605095487"
+    },
+    {
+      "drinkName": "Bor",
+      "alcoholPercent": 0.14,
+      "image": "https://assets.cntraveller.in/photos/60ba24cbe341ff812178ec43/1:1/w_768,h_768,c_limit/Red-wine-1366x768.jpg"
     },
     {
       "drinkName": "Martini",
