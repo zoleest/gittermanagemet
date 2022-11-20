@@ -52,18 +52,25 @@ class CalculatorPerMill extends React.Component {
 
             if (actualPercentage > 0) {
 
+                if(actualPercentage < 4){
+                    returnableText =
+                        <div
+                            className={"Calculator-display-calculated-data m-3 p-3 text-white text-center" + ((actualPercentage > 0) ? " bg-danger" : " bg-success")}>
+                            Vérezrelék: {actualPercentage} <br/>
+                            Ittaság várható időtartama: legalább további {remainingTime} óra. <br/>
+                            <h1><FontAwesomeIcon icon={'ban'}/> <FontAwesomeIcon icon={'car'}/> NE ÜLJ GÉPJÁRMŰBE! <a
+                                href="https://www.youtube.com/watch?v=a0DbzUe-r4Q&ab_channel=Fazlija"
+                                className="helicopter-link"><FontAwesomeIcon icon={'helicopter'}/></a> <FontAwesomeIcon
+                                icon={'ban'}/></h1>
+                        </div>;
+                }else{
 
-                returnableText =
-                    <div
+                  returnableText =  <div
                         className={"Calculator-display-calculated-data m-3 p-3 text-white text-center" + ((actualPercentage > 0) ? " bg-danger" : " bg-success")}>
                         Vérezrelék: {actualPercentage} <br/>
-                        Ittaság várható időtartama: legalább további {remainingTime} óra. <br/>
-                        <h1><FontAwesomeIcon icon={'ban'}/> <FontAwesomeIcon icon={'car'}/> NE ÜLJ GÉPJÁRMŰBE! <a
-                            href="https://www.youtube.com/watch?v=a0DbzUe-r4Q&ab_channel=Fazlija"
-                            className="helicopter-link"><FontAwesomeIcon icon={'helicopter'}/></a> <FontAwesomeIcon
-                            icon={'ban'}/></h1>
+                        <h1>Ezen a ponton már nem vagy képes gépjárműbe ülni. Az Isten legyen irgalmas a lelkedhez.</h1>
                     </div>;
-
+                }
 
             } else {
 
