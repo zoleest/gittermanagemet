@@ -31,7 +31,7 @@ class App extends React.Component {
                         <h1>Véralkoholszint mérő</h1>
                     </div>
                     <p className="text-white"><a className="link-light" href="https://www.youtube.com/watch?v=V2E8mIFKMl8&ab_channel=kriszpy">Kibaszott
-                        mérés</a><span>:D</span></p>
+                        mérés!</a></p>
                 </div>
 
                 <UserData.Provider value={this.state}>
