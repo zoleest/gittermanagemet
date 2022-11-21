@@ -14,7 +14,7 @@ class CalculatorInfoBox extends React.Component {
 
     render() {
 
-        if (this.context.amount !== undefined) {
+        if (this.context.amount !== undefined && this.context.amount > 0) {
             let bacLevel = Desc.descriptions.length - 1;
 
             for (let bacIterate = Desc.descriptions.length - 1; Desc.descriptions[bacIterate].min > this.context.bac; bacIterate--) {
@@ -31,15 +31,22 @@ class CalculatorInfoBox extends React.Component {
                 );
             } else {
 
-                return (
-                    <div className="Calculator-display m-3 p-3 text-dark text-center bg-info">
-                        Nincs, vagy nem jelentős a véralkohol szintet!<br/>
-                        Függetlenül ettől, ha szeszes italt fogyasztottál, <strong>NE VEZESS</strong>!
-                    </div>
-                );
+                if (this.context.bac > 0) {
+                    return (
+                        <div className="Calculator-display m-3 p-3 text-dark text-center bg-info">
+                            A szervezetedben nem jelentős az alkohol mennyisége, ám kérlek ha fogyasztottál szeszes italt <strong>NE VEZESS</strong>!
+                        </div>
+                    );
+                }else{
+                    return (
+                        <div className="Calculator-display m-3 p-3 text-dark text-center bg-info">
+                            A szervezetedben már nincs jelen az alkohol.
+                        </div>
+                    );
+                }
             }
 
-        }else{
+        } else {
             return null;
         }
 

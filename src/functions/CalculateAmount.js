@@ -40,6 +40,5 @@ export const CalculateAmount = function(Drinks, ConsumeRate) {
     }
 
 
-    console.log(amountPerHourLocal);
     return amountPerHourLocal[23];
 }

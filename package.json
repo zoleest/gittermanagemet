@@ -3,6 +3,7 @@
   "name": "veralkoholszint-kalkulator",
   "version": "1.0.0",
   "private": false,
+  "title": "Véralkoholszint mérő",
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
@@ -11,6 +12,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "apexcharts": "^3.36.3",
     "gh-pages": "^4.0.0",
     "npm-install-missing": "^0.1.4",
     "react": "^18.2.0",

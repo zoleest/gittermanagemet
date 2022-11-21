@@ -19,9 +19,9 @@ class CalculatorPerMill extends React.Component {
         let genderConstant = this.context.gender === "male" ? 0.68 : 0.55;
 
 
-        let bacestimatex =  (amount / (this.context.weight *1000 * genderConstant))*100;
+        let bacestimatex =  (amount / (this.context.weight *1000 * genderConstant))*1000;
 
-        console.log(amount);
+
         return bacestimatex;
 
 

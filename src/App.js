@@ -6,6 +6,13 @@ import HumanControlForm from "./components/HumanControlForm/HumanControlForm";
 import {UserData} from "./contexts/UserData";
 import Yor from './Images/Yor.png';
 
+import fontawesome from '@fortawesome/fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faFlagCheckered} from '@fortawesome/free-solid-svg-icons';
+
+fontawesome.library.add(faFlagCheckered);
+
+
 class App extends React.Component {
 
     constructor(props) {
@@ -25,14 +32,15 @@ class App extends React.Component {
 
         return (
             <div className="content">
-                <div className="header w-100 bg-dark">
-                    <div className="header-text-box w-100 position-relative ">
+                <div className="header w-100 bg-dark position-relative">
+                    <div className="header-text-box w-100  ">
                         <h1>Véralkoholszint mérő</h1>
                         <h1>Véralkoholszint mérő</h1>
-                        <img src={Yor} id="yor" alt="Yor" title="Yor"/>
+
                     </div>
-                    <p className="text-white"><a className="link-light" href="https://www.youtube.com/watch?v=V2E8mIFKMl8&ab_channel=kriszpy">Kibaszott
-                        mérés!</a></p>
+                    <p className="text-white"> <a className="link-light" href="https://www.youtube.com/watch?v=V2E8mIFKMl8&ab_channel=kriszpy"> <FontAwesomeIcon icon={'flag-checkered'}/> {">>"}Kibaszott
+                        mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a></p>
+                    <img src={Yor} id="yor" alt="Yor" title="Yor"/>
                 </div>
 
                 <UserData.Provider value={this.state}>
