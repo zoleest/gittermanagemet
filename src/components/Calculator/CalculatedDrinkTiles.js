@@ -2,6 +2,7 @@ import React from "react";
 
 import Drinks from "../NewDrinkForm/drinks.json";
 import {UserData} from "../../contexts/UserData";
+import {CalculateAmount} from "../../functions/CalculateAmount";
 
 import './Calculator.css';
 
@@ -30,6 +31,7 @@ class CalculatedDrinkTiles extends React.Component {
 
    deleteDrink() {
 
+        /*
         let amountPerHourLocal = this.context.amountPerHour;
         let alcoholAmount = this.state.drinkPercentage * 100 * 0.789 * (this.state.drinkAmount / 100);
 
@@ -54,8 +56,11 @@ class CalculatedDrinkTiles extends React.Component {
 
         this.context.amountPerHour = amountPerHourLocal;
 
+*/
 
         this.context.drunkenDrinks[this.props.keyid].displayed =false;
+
+        this.context.amount = CalculateAmount(this.context.drunkenDrinks, this.context.consumeRate);
 
        this.setState({displayed: false});
         this.context.updateDisplay();

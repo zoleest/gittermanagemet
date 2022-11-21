@@ -4,6 +4,7 @@ import fontawesome from '@fortawesome/fontawesome'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faHelicopter, faCar, faBan} from '@fortawesome/free-solid-svg-icons';
 
+
 fontawesome.library.add(faHelicopter, faCar, faBan);
 
 class CalculatorPerMill extends React.Component {
@@ -13,21 +14,22 @@ class CalculatorPerMill extends React.Component {
 
     calculateBloodPerMille() {
 
-        let amount = this.context.amountPerHour[23];
-        let genderConstant = this.context.gender === "male" ? 8 : 10;
-        let pounds = this.context.weight * 2.2026;
 
-        let bacestimatex = (amount * 0.6 * 1.055 * (genderConstant / pounds)) - (0.015) * 10;
+        let amount = this.context.amount;
+        let genderConstant = this.context.gender === "male" ? 0.68 : 0.55;
 
 
-        return bacestimatex > 0 ? bacestimatex : 0;
+        let bacestimatex =  (amount / (this.context.weight *1000 * genderConstant))*100;
+
+        console.log(amount);
+        return bacestimatex;
 
 
     }
 
     calculateReamainingTime() {
 
-        let amount = this.context.amountPerHour[23];
+        let amount = this.context.amount;
         let consumeRate = this.context.consumeRate;
 
 

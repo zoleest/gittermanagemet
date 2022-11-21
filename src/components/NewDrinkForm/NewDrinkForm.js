@@ -2,6 +2,7 @@ import React from "react";
 import Drinks from "./drinks.json";
 import AddNewDrinkSelector from "./AddNewDrinkSelector";
 import {UserData} from "../../contexts/UserData";
+import {CalculateAmount} from "../../functions/CalculateAmount";
 
 class NewDrinkForm extends React.Component {
 
@@ -37,7 +38,7 @@ class NewDrinkForm extends React.Component {
 
 
   */
-        let remainingAlcohol = ((parseFloat(event.target.new_drink_selector.value.split("@")[0]) * 100 * 0.789 * (event.target.new_drink_amount.value / 100)));
+        /*let remainingAlcohol = ((parseFloat(event.target.new_drink_selector.value.split("@")[0]) * 100 * 0.789 * (event.target.new_drink_amount.value / 100)));
         let amountPerHourLocal = this.context.amountPerHour;
 
 
@@ -61,17 +62,21 @@ class NewDrinkForm extends React.Component {
 
         }
 
-        this.context.amountPerHour = amountPerHourLocal;
+        this.context.amountPerHour = amountPerHourLocal;*/
 
         let drunkenDrinksLocal = this.context.drunkenDrinks;
         drunkenDrinksLocal.push({
             "displayed": true,
             "drinkNumber": drunkenDrinksLocal.length,
             "drinkKey": event.target.new_drink_selector.value.split("@")[1],
+            "drinkValue": event.target.new_drink_selector.value.split("@")[0],
             "drinkAmount": event.target.new_drink_amount.value,
             "drinkTime": event.target.new_drink_elapsed_time.value
         });
         this.context.drunkenDrinks = drunkenDrinksLocal;
+
+
+        this.context.amount = CalculateAmount(this.context.drunkenDrinks, this.context.consumeRate);
 
         this.context.updateDisplay();
 
