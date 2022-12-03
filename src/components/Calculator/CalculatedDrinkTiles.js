@@ -84,13 +84,17 @@ class CalculatedDrinkTiles extends React.Component {
             return object.drinkNumber === this.props.keyid;
         });
 
-        this.context.drunkenDrinks[index].displayed =false;
+        this.context.drunkenDrinks.splice(index,1);
+        console.log(index);
+        this.context.lastUpdatedArray.splice(index,1);
 
 
         this.context.amount = CalculateAmount(this.context.drunkenDrinks, this.context.consumeRate);
 
 
-       localStorage.setItem('drinks', JSON.stringify(this.context.drunkenDrinks.filter(drink=>{return drink.displayed})));
+        localStorage.setItem('drinks', JSON.stringify(this.context.drunkenDrinks.filter(drink=>{return drink.displayed})));
+        localStorage.setItem('lastUpdated', JSON.stringify(this.context.lastUpdatedArray));
+
 
         this.context.updateDisplay();
 

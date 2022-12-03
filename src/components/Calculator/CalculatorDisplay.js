@@ -28,7 +28,7 @@ class CalculatorDisplay extends React.Component {
 
         }
 
-        context.timeRate = 1000*60*60;
+        context.timeRate = 1000*10;
 
 
 
@@ -55,6 +55,7 @@ class CalculatorDisplay extends React.Component {
 
                         context.drunkenDrinks[index].drinkTime++;
                         lastUpdatedArray[index] = Date();
+                        context.lastUpdatedArray = lastUpdatedArray;
                         context.amount =  CalculateAmount(context.drunkenDrinks, context.consumeRate);
                         localStorage.setItem('drinks', JSON.stringify(context.drunkenDrinks));
                         localStorage.setItem('lastUpdated', JSON.stringify(lastUpdatedArray));
@@ -64,6 +65,7 @@ class CalculatorDisplay extends React.Component {
                         context.elapsedTimeInterval =  setInterval(function (context, index) {
 
                            lastUpdatedArray[index] = Date();
+                            context.lastUpdatedArray = lastUpdatedArray;
                             context.amount =  CalculateAmount(context.drunkenDrinks, context.consumeRate);
                             context.drunkenDrinks[index].drinkTime ++;
                             localStorage.setItem('drinks', JSON.stringify(context.drunkenDrinks));
