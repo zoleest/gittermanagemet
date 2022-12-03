@@ -72,6 +72,8 @@ class NewDrinkForm extends React.Component {
 
             this.context.lastUpdatedArray.push(Date());
 
+           localStorage.setItem('lastUpdated', JSON.stringify(this.context.lastUpdatedArray));
+
               let actualItemInLastUpdatedArray = this.context.lastUpdatedArray.length -1;
             /*   setInterval(function (context, elapsedTime) {
                     TimeOutCounter(context, elapsedTime, CalculateRemainingDrinksAfterElapsedTime, CalculateAmount);

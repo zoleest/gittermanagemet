@@ -19,7 +19,7 @@ class CalculatorDisplay extends React.Component {
         context.lastUpdatedArray= Array(0);
 
 
-        if(localStorage.getItem('personalData') !== null){
+       if(localStorage.getItem('personalData') !== null){
 
            let personalData = JSON.parse(localStorage.getItem('personalData'));
            context.weight = personalData.weight;
@@ -31,6 +31,7 @@ class CalculatorDisplay extends React.Component {
         context.timeRate = 1000*60*60;
 
 
+
         if (localStorage.getItem('drinks') !== null && context.drunkenDrinks.length === 0 && localStorage.getItem('lastUpdated') !== null) {
 
             context.drunkenDrinks = JSON.parse(localStorage.getItem('drinks'));
@@ -39,9 +40,10 @@ class CalculatorDisplay extends React.Component {
             for(let lastUpdatedArrayIteral = 0; lastUpdatedArrayIteral < lastUpdatedArray.length; lastUpdatedArrayIteral++) {
 
                 let elapsedHours = Math.floor(Math.abs(new Date() - new Date(lastUpdatedArray[lastUpdatedArrayIteral])) / context.timeRate);
-                console.log(elapsedHours);
+
                 context.drunkenDrinks[lastUpdatedArrayIteral] = CalculateRemainingDrinksAfterElapsedTime(context.drunkenDrinks,lastUpdatedArrayIteral, elapsedHours);
 
+                localStorage.setItem('lastUpdated', JSON.stringify(lastUpdatedArray));
 
                 let remainingTime = context.timeRate - Math.abs((context.timeRate*elapsedHours) - (Math.abs(new Date() - new Date(lastUpdatedArray[lastUpdatedArrayIteral]))));
 
@@ -52,15 +54,20 @@ class CalculatorDisplay extends React.Component {
                     if (context.drunkenDrinks.filter(drink =>{return drink.displayed}).length !== 0) {
 
                         context.drunkenDrinks[index].drinkTime++;
+                        lastUpdatedArray[index] = Date();
+                        context.amount =  CalculateAmount(context.drunkenDrinks, context.consumeRate);
                         localStorage.setItem('drinks', JSON.stringify(context.drunkenDrinks));
-                        localStorage.setItem('lastUpdated', JSON.stringify(context.lastUpdatedArray));
+                        localStorage.setItem('lastUpdated', JSON.stringify(lastUpdatedArray));
                         context.updateDisplay();
 
 
                         context.elapsedTimeInterval =  setInterval(function (context, index) {
+
+                           lastUpdatedArray[index] = Date();
+                            context.amount =  CalculateAmount(context.drunkenDrinks, context.consumeRate);
                             context.drunkenDrinks[index].drinkTime ++;
                             localStorage.setItem('drinks', JSON.stringify(context.drunkenDrinks));
-                            localStorage.setItem('lastUpdated', JSON.stringify(context.lastUpdatedArray));
+                            localStorage.setItem('lastUpdated', JSON.stringify(lastUpdatedArray));
                             context.updateDisplay();
 
 

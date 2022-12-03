@@ -20,7 +20,6 @@ class App extends React.Component {
         this.state = {
             "weight": 0,
             "gender": "",
-            "amountPerHour": Array(24).fill(0),
             "drunkenDrinks": [],
             "consumeRate": 0,
         }
