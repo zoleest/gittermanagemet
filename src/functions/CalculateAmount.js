@@ -1,6 +1,9 @@
 export const CalculateAmount = function(Drinks, ConsumeRate) {
 
 
+    console.log(ConsumeRate);
+
+
     let amountPerHourLocal = Array(24).fill(0);
     let filteredDrinks = Drinks.filter(drink=>{return drink.displayed});
 
@@ -12,6 +15,8 @@ export const CalculateAmount = function(Drinks, ConsumeRate) {
 
 
         let remainingAlcohol = ((parseFloat(filteredDrinks[drinkCount].drinkValue) * 100 * 0.789 * (filteredDrinks[drinkCount].drinkAmount / 100)))
+
+
 
 
 
@@ -34,10 +39,15 @@ export const CalculateAmount = function(Drinks, ConsumeRate) {
             }
 
 
+
+
         }
 
 
+
+
     }
+
 
 
     return amountPerHourLocal[23];

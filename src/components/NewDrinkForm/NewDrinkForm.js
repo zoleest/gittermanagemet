@@ -3,17 +3,22 @@ import Drinks from "./drinks.json";
 import AddNewDrinkSelector from "./AddNewDrinkSelector";
 import {UserData} from "../../contexts/UserData";
 import {CalculateAmount} from "../../functions/CalculateAmount";
+import {CalculateRemainingDrinksAfterElapsedTime} from "../../functions/CalculateElapsedTime";
+import {TimeOutCounter} from "../../functions/TimeOutCounter";
+
 
 class NewDrinkForm extends React.Component {
 
     static contextType = UserData;
 
 
-    constructor(props) {
+    constructor(props, context) {
         super(props);
         this.state = {
             isOpened: false
         }
+
+        context.elapsedTimeInterval =null;
 
         this.openFromControls = this.openFromControls.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -64,19 +69,40 @@ class NewDrinkForm extends React.Component {
 
         this.context.amountPerHour = amountPerHourLocal;*/
 
+
+
+                if (this.context.elapsedTimeInterval !== null){
+                    clearInterval(this.context.elapsedTimeInterval);
+                }
+
+               this.context.elapsedTimeInterval =  setInterval(function (context, elapsedTime) {
+                    TimeOutCounter(context, elapsedTime, CalculateRemainingDrinksAfterElapsedTime, CalculateAmount);
+                }, this.context.timeRate, this.context, 1);
+
+
+
+
+        localStorage.setItem('lastUpdate', Date());
+
+
+
         let drunkenDrinksLocal = this.context.drunkenDrinks;
+
         drunkenDrinksLocal.push({
             "displayed": true,
             "drinkNumber": drunkenDrinksLocal.length,
             "drinkKey": event.target.new_drink_selector.value.split("@")[1],
             "drinkValue": event.target.new_drink_selector.value.split("@")[0],
             "drinkAmount": event.target.new_drink_amount.value,
-            "drinkTime": event.target.new_drink_elapsed_time.value
+            "drinkTime": parseInt(event.target.new_drink_elapsed_time.value)
         });
         this.context.drunkenDrinks = drunkenDrinksLocal;
 
 
         this.context.amount = CalculateAmount(this.context.drunkenDrinks, this.context.consumeRate);
+        localStorage.setItem('drinks', JSON.stringify(this.context.drunkenDrinks.filter(drink=>{return drink.displayed})));
+
+
 
         this.context.updateDisplay();
 
@@ -90,6 +116,7 @@ class NewDrinkForm extends React.Component {
 
 
     render() {
+
 
         if (this.context.weight !== "" && this.context.gender !== "") {
             return (
@@ -118,7 +145,7 @@ class NewDrinkForm extends React.Component {
 
             );
 
-        }else{
+        } else {
             return null;
         }
     }

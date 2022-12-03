@@ -3,6 +3,7 @@ import {UserData} from "../../contexts/UserData";
 import fontawesome from '@fortawesome/fontawesome'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faHelicopter, faCar, faBan} from '@fortawesome/free-solid-svg-icons';
+import {CalculateAmount} from "../../functions/CalculateAmount";
 
 
 fontawesome.library.add(faHelicopter, faCar, faBan);
@@ -11,6 +12,15 @@ class CalculatorPerMill extends React.Component {
 
     static contextType = UserData;
 
+    constructor(props, context) {
+        super(props);
+
+        this.state={}
+
+       // console.log(context.amount);
+    context.amount = CalculateAmount(context.drunkenDrinks, context.consumeRate);
+
+    }
 
     calculateBloodPerMille() {
 
@@ -18,11 +28,7 @@ class CalculatorPerMill extends React.Component {
         let amount = this.context.amount;
         let genderConstant = this.context.gender === "male" ? 0.68 : 0.55;
 
-
-        let bacestimatex =  (amount / (this.context.weight *1000 * genderConstant))*1000;
-
-
-        return bacestimatex;
+        return (amount / (this.context.weight *1000 * genderConstant))*1000;
 
 
     }

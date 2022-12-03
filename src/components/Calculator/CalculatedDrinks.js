@@ -14,11 +14,9 @@ class CalculatedDrinks extends React.Component {
             <div className="Calculator-display-calculated-drinks">
                 <div className="Calculator-display-calculated-drink-calculate-drink-tile p-3">
                     <div className="row justify-content-center">
-                        {this.context.drunkenDrinks.map(drink => {
-
-                            return <CalculatedDrinkTiles drink={drink} key={drink.drinkNumber} keyid={drink.drinkNumber}
-                                                        />
-
+                        {this.context.drunkenDrinks.filter(drink=>{return drink.displayed}).map((drink, index) => {
+                            return <CalculatedDrinkTiles drink={drink} key={index} keyid={drink.drinkNumber}/>;
+//
                         })}
 
                     </div>

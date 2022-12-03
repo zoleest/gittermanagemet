@@ -16,20 +16,41 @@ class CalculatedDrinkTiles extends React.Component {
         let actualDrink = this.props.drink;
 
         this.state = {
-            displayed: true,
-            drinkId : this.props.keyid,
-            drinkName: Drinks.drinks[actualDrink.drinkKey].drinkName,
-            drinkImage: Drinks.drinks[actualDrink.drinkKey].image,
-            drinkAmount: actualDrink.drinkAmount,
-            drinkTime: actualDrink.drinkTime,
-            drinkPercentage: Drinks.drinks[actualDrink.drinkKey].alcoholPercent
-        };
+           displayed: true,
+           drinkId : this.props.keyid,
+           drinkName: Drinks.drinks[actualDrink.drinkKey].drinkName,
+           drinkImage: Drinks.drinks[actualDrink.drinkKey].image,
+           drinkAmount: actualDrink.drinkAmount,
+           drinkTime: actualDrink.drinkTime,
+           drinkPercentage: Drinks.drinks[actualDrink.drinkKey].alcoholPercent
+       }
 
         this.deleteDrink = this.deleteDrink.bind(this);
     }
 
+  componentDidUpdate(prevProps, prevState) {
 
-   deleteDrink() {
+        if(prevProps !== this.props){
+            let actualDrink = this.props.drink;
+            console.log('das');
+
+            this.setState({
+                drinkId : this.props.keyid,
+                drinkName: Drinks.drinks[actualDrink.drinkKey].drinkName,
+                drinkImage: Drinks.drinks[actualDrink.drinkKey].image,
+                drinkAmount: actualDrink.drinkAmount,
+                drinkTime: actualDrink.drinkTime,
+                drinkPercentage: Drinks.drinks[actualDrink.drinkKey].alcoholPercent
+            });
+
+
+        }
+
+
+
+    }
+
+    deleteDrink() {
 
         /*
         let amountPerHourLocal = this.context.amountPerHour;
@@ -58,11 +79,16 @@ class CalculatedDrinkTiles extends React.Component {
 
 */
 
-        this.context.drunkenDrinks[this.props.keyid].displayed =false;
+        console.log(this.context.drunkenDrinks);
+        console.log(this.props.keyid);
+
+        this.context.drunkenDrinks.filter(drink=>{return drink.drinkNumber===this.props.keyid})[0].displayed =false;
 
         this.context.amount = CalculateAmount(this.context.drunkenDrinks, this.context.consumeRate);
 
-       this.setState({displayed: false});
+
+       localStorage.setItem('drinks', JSON.stringify(this.context.drunkenDrinks.filter(drink=>{return drink.displayed})));
+
         this.context.updateDisplay();
 
 
@@ -84,7 +110,7 @@ class CalculatedDrinkTiles extends React.Component {
                                 <div className="col-6 text-start">
                                     <h1>{this.state.drinkName}</h1>
                                     <h2>Elfogyasztott mennyiség: {this.state.drinkAmount}ml</h2>
-                                    <h2>Eltelt idő: {this.state.drinkTime === "0"?"Kevesebb, mint 1":"Legalább " + this.state.drinkTime}  óra</h2>
+                                    <h2>Eltelt idő: {this.state.drinkTime === 0?"Kevesebb, mint 1":"Legalább " + this.state.drinkTime}  óra</h2>
                                     <h3>Alkoholtartalom: {this.state.drinkPercentage * 100}%</h3>
                                     <h4>{(this.state.drinkName==="Rémy Martin konyak" && this.props.keyid === 0)?"HÉ! ÉN IS KÉREK!":""}</h4>
                                 </div>

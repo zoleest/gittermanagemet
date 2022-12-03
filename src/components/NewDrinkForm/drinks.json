@@ -1,64 +1,73 @@
 {
   "drinks": [
-    {
+    { "index": 0,
       "drinkName": "Sör",
       "alcoholPercent": 0.04,
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYOKmJxdLSYNk3Dx0AuCf8GSphEfAg02fq_w&usqp=CAU"
     },
-        {
+    { "index": 1,
       "drinkName": "Pezsgő",
       "alcoholPercent": 0.115,
       "image": "https://borguru.cdn.shoprenter.hu/custom/borguru/image/cache/w500h500wt1q100/RIEDEL/Vinum/riedel-vinum-prestige-cuvee.jpg?lastmod=1668413028.1605095487"
     },
-    {
+    { "index": 2,
       "drinkName": "Bor",
       "alcoholPercent": 0.14,
       "image": "https://assets.cntraveller.in/photos/60ba24cbe341ff812178ec43/1:1/w_768,h_768,c_limit/Red-wine-1366x768.jpg"
     },
-    {
+    { "index": 3,
       "drinkName": "Martini",
       "alcoholPercent": 0.16,
       "image": "https://www.liquor.com/thmb/TiIfuripVmSK3TLWtRhKsLkU_Q8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/dry-martini-720x720-primary-a6de08f8cd584ad88520287922578bcb.jpg"
     },
-    {
+    { "index": 4,
       "drinkName": "Kevert likőr",
       "alcoholPercent": 0.245,
       "image": "https://secure.ce-tescoassets.com/assets/HU/229/5996558073229/ShotType1_540x540.jpg"
     },
-    {
+    { "index": 5,
       "drinkName": "Jägermeister",
       "alcoholPercent": 0.35,
       "image": "https://media.discordapp.net/attachments/1000087403186360380/1044004823646863471/jager.jpg?width=485&height=484"
     },
-    {
+    { "index": 6,
       "drinkName": "Vodka",
       "alcoholPercent": 0.38,
       "image": "https://m.media-amazon.com/images/I/51PFSO5zzvL._AC_.jpg"
     },
-    {
+    { "index": 7,
       "drinkName": "Pálinka",
       "alcoholPercent": 0.40,
       "image": "https://s13emagst.akamaized.net/products/32332/32331327/images/res_d54bf97ad564b0657d7f1425422ecbd9.jpg"
     },
-    {
+    { "index": 8,
       "drinkName": "Unicum",
       "alcoholPercent": 0.40,
       "image": "https://media.discordapp.net/attachments/1000087403186360380/1043999764989104220/unicum.jpg?width=485&height=484"
     },
-    {
+    { "index": 9,
       "drinkName": "Rémy Martin konyak",
       "alcoholPercent": 0.40,
       "image": "https://rkcafe.ng/wp-content/uploads/2020/12/Remy-martin-VSOP-Shot.jpg"
     },
-    {
+    { "index": 10,
       "drinkName": "Whisky",
       "alcoholPercent": 0.50,
       "image": "https://cdn.shopify.com/s/files/1/0552/6110/2264/products/MON112-L-1_1200x.jpg?v=1643215326"
     },
-    {
+    { "index": 11,
       "drinkName": "RosieLand",
       "alcoholPercent": 6000000000000000000000,
       "image": "https://media.discordapp.net/attachments/1000087403186360380/1044002344792227881/shot.jpg?width=485&height=484"
+    }
+  ],
+  "desserts": [
+    {
+      "index": 12,
+      "drinkName": "Konyakmeggy bonbon",
+      "alcoholPercent": 0.05,
+      "portion": 11,
+      "image": "http://www.bonbonetti.hu/wp-content/uploads/2012/09/cherry_108.jpg"
     }
   ]
 }
