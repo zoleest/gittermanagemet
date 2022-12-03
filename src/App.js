@@ -83,7 +83,7 @@ class App extends React.Component {
                     <p className="text-white"><a className="link-light"
                                                  href="https://www.youtube.com/watch?v=V2E8mIFKMl8&ab_channel=kriszpy">
                         <FontAwesomeIcon icon={'flag-checkered'}/> {">>"}Kibaszott
-                        mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/><span className="h6">Version code: Zebulon(2)</span><span onClick={this.revealInfoBox} className="info-link">{">>"}Információk{"<<"}</span></p>
+                        mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/><span className="h6">Version code: Zebulon(3)</span><span onClick={this.revealInfoBox} className="info-link">{">>"}Információk{"<<"}</span></p>
                     <img src={Yor} id="yor" alt="Yor" title="Yor"/>
                 </div>
 
