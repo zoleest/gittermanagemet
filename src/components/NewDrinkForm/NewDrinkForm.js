@@ -79,18 +79,23 @@ class NewDrinkForm extends React.Component {
                     TimeOutCounter(context, elapsedTime, CalculateRemainingDrinksAfterElapsedTime, CalculateAmount);
                 }, this.context.timeRate, this.context, 1);*/
 
-               setInterval(function(context){
+            setTimeout(function(context){
 
-                   context.drunkenDrinks[actualItemInLastUpdatedArray].drinkTime++;
+                setInterval(function(context){
 
-                   context.amount =  CalculateAmount(context.drunkenDrinks, context.consumeRate);
-
-                   context.lastUpdatedArray[actualItemInLastUpdatedArray] = Date();
-
-                   localStorage.setItem("lastUpdated", JSON.stringify(context.lastUpdatedArray));
+                    context.drunkenDrinks[actualItemInLastUpdatedArray].drinkTime++;
+                    context.amount =  CalculateAmount(context.drunkenDrinks, context.consumeRate);
+                    context.lastUpdatedArray[actualItemInLastUpdatedArray] = Date();
+                    localStorage.setItem("lastUpdated", JSON.stringify(context.lastUpdatedArray));
 
                     context.updateDisplay();
-               }, this.context.timeRate, this.context);
+                }, this.context.timeRate,context);
+
+
+
+
+            }, this.context.timerate/2, this.context);
+
 
            // localStorage.setItem('lastUpdate', Date());
 
