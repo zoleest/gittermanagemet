@@ -117,7 +117,7 @@ class CalculatedDrinkTiles extends React.Component {
                                 <div className="col-6 text-start">
                                     <h1>{this.state.drinkName}</h1>
                                     <h2>Elfogyasztott mennyiség: {this.state.drinkAmount}ml</h2>
-                                    <h2>Eltelt idő: {this.state.drinkTime === 0?"Kevesebb, mint 1,5":"Legalább " + parseFloat(this.state.drinkTime+0.5)}  óra</h2>
+                                    <h2>Eltelt idő: {this.state.drinkTime <= 1?"Kevesebb, mint 1,5":"Legalább " + parseFloat(this.state.drinkTime-0.5)}  óra</h2>
                                     <h3>Alkoholtartalom: {this.state.drinkPercentage * 100}%</h3>
                                     <h4>{(this.state.drinkName==="Rémy Martin konyak" && this.props.keyid === 0)?"HÉ! ÉN IS KÉREK!":""}</h4>
                                 </div>
