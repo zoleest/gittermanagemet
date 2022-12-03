@@ -5,6 +5,11 @@
       "alcoholPercent": 0.04,
       "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYOKmJxdLSYNk3Dx0AuCf8GSphEfAg02fq_w&usqp=CAU"
     },
+    { "index": 0,
+      "drinkName": "Hard seltzer",
+      "alcoholPercent": 0.04,
+      "image": "https://gb3.ba/biznis/wp-content/uploads/2021/06/WAI-MOMENT-4.jpg"
+    },
     { "index": 1,
       "drinkName": "Pezsgő",
       "alcoholPercent": 0.115,

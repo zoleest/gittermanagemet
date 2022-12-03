@@ -69,7 +69,7 @@ class CalculatorPerMill extends React.Component {
                         <div
                             className={"Calculator-display-calculated-data m-3 p-3 text-white text-center" + (( this.context.bac > 0) ? " bg-danger" : " bg-success")}>
                             Vérezrelék: {this.context.bac} <br/>
-                            Ittaság várható időtartama: legalább további {remainingTime} óra. <br/>
+                            Ittaság várható időtartama: legalább további {remainingTime},5 óra. <br/>
                             <h1><FontAwesomeIcon icon={'ban'}/> <FontAwesomeIcon icon={'car'}/> NE ÜLJ GÉPJÁRMŰBE! <a
                                 href="https://www.youtube.com/watch?v=a0DbzUe-r4Q&ab_channel=Fazlija"
                                 className="helicopter-link"><FontAwesomeIcon icon={'helicopter'}/></a> <FontAwesomeIcon

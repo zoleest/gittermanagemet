@@ -9,11 +9,11 @@
     },
     {
       "min": 0.4,
-      "desc": "Jó közérzet, nyugalom, az ember kevésbé gátlásos, kellemes melegség érzet, eufória. Kevéssel csökken a memőria és a megítélőképesség, csökken a figyelem."
+      "desc": "Jó közérzet, nyugalom, az ember kevésbé gátlásos, kellemes melegség érzet, eufória. Kevéssel csökken a memória és a megítélőképesség, csökken a figyelem."
     },
     {
       "min": 0.6,
-      "desc": "Enyhe zavarodottsága az egyensúlynak, beszédnek, látásnak, reakcióidőnek és a hallásnak, eufória. Csökkent meghítélőképességés önkontroll. Pontatlan memória és érvelőképesség."
+      "desc": "Enyhe zavarodottsága az egyensúlynak, beszédnek, látásnak, reakcióidőnek és a hallásnak, eufória. Csökkent megítélőképességés önkontroll. Pontatlan memória és érvelőképesség."
     },
     {
       "min": 1,

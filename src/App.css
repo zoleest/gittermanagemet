@@ -45,7 +45,6 @@ html{
 }
 .header p span {
   display: block;
-  transform: rotate(90deg);
   margin-top: 0.25em;
 }
 
@@ -67,4 +66,17 @@ html{
 
 .header a{
   text-decoration: none;
+}
+
+.info-box{
+  z-index: 2;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+
+.info-back-button, .info-link{
+  cursor: pointer;
 }
