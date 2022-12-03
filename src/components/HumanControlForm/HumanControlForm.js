@@ -30,6 +30,8 @@ class HumanControlForm extends React.Component {
 
       localStorage.setItem('personalData', JSON.stringify(personalData));
 
+      this.props.appReference.setState({});
+
 
     }
 

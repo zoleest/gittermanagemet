@@ -38,7 +38,7 @@ class App extends React.Component {
 
                     </div>
                     <p className="text-white"> <a className="link-light" href="https://www.youtube.com/watch?v=V2E8mIFKMl8&ab_channel=kriszpy"> <FontAwesomeIcon icon={'flag-checkered'}/> {">>"}Kibaszott
-                        mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/>Version code: Foku Me</p>
+                        mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/>Version code: Robert E. O. Speedwagon</p>
                     <img src={Yor} id="yor" alt="Yor" title="Yor"/>
                 </div>
 
