@@ -28,7 +28,7 @@ class CalculatorDisplay extends React.Component {
 
         }
 
-        context.timeRate = 1000*10;
+        context.timeRate = 1000*60*60;
 
 
 
