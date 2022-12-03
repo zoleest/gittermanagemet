@@ -5,7 +5,6 @@ import CalculatedDrinks from "./CalculatedDrinks";
 import CalculatorInfoBox from "./CalculatorInfoBox";
 import {CalculateRemainingDrinksAfterElapsedTime} from "../../functions/CalculateElapsedTime";
 import {CalculateAmount} from "../../functions/CalculateAmount";
-import {TimeOutCounter} from "../../functions/TimeOutCounter";
 
 
 class CalculatorDisplay extends React.Component {
@@ -17,6 +16,8 @@ class CalculatorDisplay extends React.Component {
         this.state = {}
 
         context.elapsedTime = null;
+        context.lastUpdatedArray= Array(0);
+
 
         if(localStorage.getItem('personalData') !== null){
 
@@ -27,49 +28,56 @@ class CalculatorDisplay extends React.Component {
 
         }
 
-        context.timeRate = 1000*10;
+        context.timeRate = 1000*60*60;
 
 
-        if (localStorage.getItem('drinks') !== null && context.drunkenDrinks.length === 0 && localStorage.getItem('lastUpdate') !== null) {
+        if (localStorage.getItem('drinks') !== null && context.drunkenDrinks.length === 0 && localStorage.getItem('lastUpdated') !== null) {
 
-
-            let elapsedHours = Math.floor(Math.abs(new Date() - new Date(localStorage.getItem('lastUpdate'))) / context.timeRate);
             context.drunkenDrinks = JSON.parse(localStorage.getItem('drinks'));
-            context.drunkenDrinks = CalculateRemainingDrinksAfterElapsedTime(context.drunkenDrinks, elapsedHours);
-            context.amount = CalculateAmount(context.drunkenDrinks, context.consumeRate);
+            let lastUpdatedArray= JSON.parse(localStorage.getItem('lastUpdated'));
+
+            for(let lastUpdatedArrayIteral = 0; lastUpdatedArrayIteral < lastUpdatedArray.length; lastUpdatedArrayIteral++) {
+
+                let elapsedHours = Math.floor(Math.abs(new Date() - new Date(lastUpdatedArray[lastUpdatedArrayIteral])) / context.timeRate);
+                console.log(elapsedHours);
+                context.drunkenDrinks[lastUpdatedArrayIteral] = CalculateRemainingDrinksAfterElapsedTime(context.drunkenDrinks,lastUpdatedArrayIteral, elapsedHours);
 
 
-            let remainingTime = context.timeRate - Math.abs((context.timeRate*elapsedHours) - (Math.abs(new Date() - new Date(localStorage.getItem('lastUpdate')))));
+                let remainingTime = context.timeRate - Math.abs((context.timeRate*elapsedHours) - (Math.abs(new Date() - new Date(lastUpdatedArray[lastUpdatedArrayIteral]))));
+
+                setTimeout(function(context, index){
 
 
-            setTimeout(function(context, elapsedTime){
 
-                console.log(remainingTime);
+                    if (context.drunkenDrinks.filter(drink =>{return drink.displayed}).length !== 0) {
 
-                if (context.drunkenDrinks.filter(drink =>{return drink.displayed}).length !== 0) {
+                        context.drunkenDrinks[index].drinkTime++;
+                        localStorage.setItem('drinks', JSON.stringify(context.drunkenDrinks));
+                        localStorage.setItem('lastUpdated', JSON.stringify(context.lastUpdatedArray));
+                        context.updateDisplay();
 
 
-                    if (context.elapsedTimeInterval !== null){
-                        clearInterval(context.elapsedTimeInterval);
+                        context.elapsedTimeInterval =  setInterval(function (context, index) {
+                            context.drunkenDrinks[index].drinkTime ++;
+                            localStorage.setItem('drinks', JSON.stringify(context.drunkenDrinks));
+                            localStorage.setItem('lastUpdated', JSON.stringify(context.lastUpdatedArray));
+                            context.updateDisplay();
+
+
+
+                        }, context.timeRate, context, index);
+
+
                     }
 
-                    TimeOutCounter(context, elapsedTime, CalculateRemainingDrinksAfterElapsedTime, CalculateAmount);
+                }, remainingTime, context, lastUpdatedArrayIteral);
 
 
-                    context.elapsedTimeInterval =  setInterval(function (context, elapsedTime) {
-                        TimeOutCounter(context, elapsedTime, CalculateRemainingDrinksAfterElapsedTime, CalculateAmount);
-                    }, context.timeRate, context, elapsedTime);
 
 
-                }
-
-            }, remainingTime, context, 1);
-
-            localStorage.setItem('drinks', JSON.stringify(context.drunkenDrinks));
-
-            if (elapsedHours > 0) {
-                localStorage.setItem('lastUpdate', Date());
             }
+
+            context.amount = CalculateAmount(context.drunkenDrinks, context.consumeRate);
 
         }
 

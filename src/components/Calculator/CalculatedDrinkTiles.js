@@ -79,10 +79,13 @@ class CalculatedDrinkTiles extends React.Component {
 
 */
 
-        console.log(this.context.drunkenDrinks);
-        console.log(this.props.keyid);
 
-        this.context.drunkenDrinks.filter(drink=>{return drink.drinkNumber===this.props.keyid})[0].displayed =false;
+        let index = this.context.drunkenDrinks.findIndex(object=>{
+            return object.drinkNumber === this.props.keyid;
+        });
+
+        this.context.drunkenDrinks[index].displayed =false;
+
 
         this.context.amount = CalculateAmount(this.context.drunkenDrinks, this.context.consumeRate);
 

@@ -1,11 +1,10 @@
-export const CalculateRemainingDrinksAfterElapsedTime = function(drinks,elapsedTime) {
+export const CalculateRemainingDrinksAfterElapsedTime = function(drinks,index,elapsedTime) {
 
 
 
-  for (let movableDrinksIteral = 0; movableDrinksIteral < drinks.length; movableDrinksIteral++) {
-        drinks[movableDrinksIteral].drinkTime += parseInt(elapsedTime!==null?elapsedTime:1);
-    }
+     drinks[index].drinkTime += parseInt(elapsedTime!==null?elapsedTime:1);
 
-    return drinks;
+
+    return drinks[index];
 
 }
