@@ -5,6 +5,7 @@ import CalculatorDisplay from "./components/Calculator/CalculatorDisplay";
 import HumanControlForm from "./components/HumanControlForm/HumanControlForm";
 import {UserData} from "./contexts/UserData";
 import Yor from './Images/Yor.png';
+import Headerbg from './Images/headerbg.jpg';
 
 import fontawesome from '@fortawesome/fontawesome'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -89,16 +90,20 @@ class App extends React.Component {
 
 
                     </div>
-                    <div className="header w-100 bg-dark position-relative">
+                    <div className="header w-100 bg-white position-relative">
                         <div className="header-text-box w-100  ">
-                            <h1>Véralkoholszint mérő</h1>
-                            <h1>Véralkoholszint mérő</h1>
+
+
+                            <div className="w-100 mt-3 header">
+                                <h1 className="text-dark text-center">Véralkoholszint kalkulátor</h1>
+                                <h3 className="text-dark text-center">Fogyassz felelősséggel!</h3>
+                            </div>
 
                         </div>
-                        <p className="text-white"><a className="link-light"
+                        <p className="text-dark"><a className="link-dark"
                                                      href="https://www.youtube.com/watch?v=V2E8mIFKMl8&ab_channel=kriszpy">
                             <FontAwesomeIcon icon={'flag-checkered'}/> {">>"}Kibaszott
-                            mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/><span className="h6">Version code: Walther von der Vogelweide </span><span
+                            mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/><span className="h6">Version code: Valter von der Vogelveide</span><span
                             onClick={this.revealInfoBox} className="info-link">{">>"}Információk{"<<"}</span></p>
                         <img src={Yor} id="yor" alt="Yor" title="Yor"/>
                     </div>
@@ -123,7 +128,12 @@ class App extends React.Component {
 
                 </div>
                 <div id="footer" className="container-fluid bg-dark text-light">Készítette: Halápi Dávid. <a className="link-light ps-2" href="http://halapidavid.hu"><FontAwesomeIcon icon={'globe'}/> halapidavid.hu</a>  <span className="ps-4">  E-mail: <a className="link-light"  href="mailto:info@halapidavid.hu"><FontAwesomeIcon icon={'envelope'}/> info@halapidavid.hu</a></span></div>
-            </div>
+
+
+
+        </div>
+
+
 
         );
 
