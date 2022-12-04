@@ -80,3 +80,7 @@ html{
 .info-back-button, .info-link{
   cursor: pointer;
 }
+
+#footer a{
+  text-decoration: none;
+}

@@ -89,7 +89,7 @@ class NewDrinkForm extends React.Component {
                     localStorage.setItem("lastUpdated", JSON.stringify(context.lastUpdatedArray));
 
                     context.updateDisplay();
-                }, this.context.timeRate,context);
+                }, context.timeRate,context);
 
 
 

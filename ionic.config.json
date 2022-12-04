@@ -1,0 +1,7 @@
+{
+  "name": "Véralkoholszint kalkulátor",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}

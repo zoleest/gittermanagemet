@@ -36,17 +36,23 @@ class CalculatorDisplay extends React.Component {
 
             context.drunkenDrinks = JSON.parse(localStorage.getItem('drinks'));
             let lastUpdatedArray= JSON.parse(localStorage.getItem('lastUpdated'));
+            context.lastUpdatedArray = lastUpdatedArray;
 
             for(let lastUpdatedArrayIteral = 0; lastUpdatedArrayIteral < lastUpdatedArray.length; lastUpdatedArrayIteral++) {
 
                 let elapsedHours = Math.floor(Math.abs(new Date() - new Date(lastUpdatedArray[lastUpdatedArrayIteral])) / context.timeRate);
 
                 context.drunkenDrinks[lastUpdatedArrayIteral] = CalculateRemainingDrinksAfterElapsedTime(context.drunkenDrinks,lastUpdatedArrayIteral, elapsedHours);
+                lastUpdatedArray[lastUpdatedArrayIteral] = new Date(new Date(lastUpdatedArray[lastUpdatedArrayIteral]).getTime() + (elapsedHours*context.timeRate)).toLocaleString() ;
+                context.lastUpdatedArray = lastUpdatedArray;
+
 
                 localStorage.setItem('lastUpdated', JSON.stringify(lastUpdatedArray));
 
-                let remainingTime = context.timeRate - Math.abs((context.timeRate*elapsedHours) - (Math.abs(new Date() - new Date(lastUpdatedArray[lastUpdatedArrayIteral]))));
+                let remainingTime = context.timeRate - ((Math.abs((context.timeRate*elapsedHours) - (Math.abs(new Date().getTime() - new Date(lastUpdatedArray[lastUpdatedArrayIteral]).getTime())))) % context.timeRate);
 
+
+                console.log(remainingTime);
                 setTimeout(function(context, index){
 
 
@@ -58,7 +64,7 @@ class CalculatorDisplay extends React.Component {
                         context.lastUpdatedArray = lastUpdatedArray;
                         context.amount =  CalculateAmount(context.drunkenDrinks, context.consumeRate);
                         localStorage.setItem('drinks', JSON.stringify(context.drunkenDrinks));
-                        localStorage.setItem('lastUpdated', JSON.stringify(lastUpdatedArray));
+                        localStorage.setItem('lastUpdated', JSON.stringify(context.lastUpdatedArray));
                         context.updateDisplay();
 
 
@@ -69,7 +75,7 @@ class CalculatorDisplay extends React.Component {
                             context.amount =  CalculateAmount(context.drunkenDrinks, context.consumeRate);
                             context.drunkenDrinks[index].drinkTime ++;
                             localStorage.setItem('drinks', JSON.stringify(context.drunkenDrinks));
-                            localStorage.setItem('lastUpdated', JSON.stringify(lastUpdatedArray));
+                            localStorage.setItem('lastUpdated', JSON.stringify(context.lastUpdatedArray));
                             context.updateDisplay();
 
 

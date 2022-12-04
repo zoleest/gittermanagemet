@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.veralkoholszint-kalkulator",
+  "appName": "Véralkoholszint kalkulátor",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build",
+  "cordova": {}
+}

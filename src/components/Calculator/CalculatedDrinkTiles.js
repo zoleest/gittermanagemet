@@ -32,7 +32,6 @@ class CalculatedDrinkTiles extends React.Component {
 
         if(prevProps !== this.props){
             let actualDrink = this.props.drink;
-            console.log('das');
 
             this.setState({
                 drinkId : this.props.keyid,
@@ -85,7 +84,6 @@ class CalculatedDrinkTiles extends React.Component {
         });
 
         this.context.drunkenDrinks.splice(index,1);
-        console.log(index);
         this.context.lastUpdatedArray.splice(index,1);
 
 
