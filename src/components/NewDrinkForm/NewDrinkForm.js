@@ -106,8 +106,8 @@ class NewDrinkForm extends React.Component {
         drunkenDrinksLocal.push({
             "displayed": true,
             "drinkNumber": drunkenDrinksLocal.length,
-            "drinkKey": event.target.new_drink_selector.value.split("@")[1],
-            "drinkValue": event.target.new_drink_selector.value.split("@")[0],
+            "drinkKey": JSON.parse(event.target.new_drink_selector.value)[1],
+            "drinkValue": JSON.parse(event.target.new_drink_selector.value)[0],
             "drinkAmount": event.target.new_drink_amount.value,
             "drinkTime": parseInt(event.target.new_drink_elapsed_time.value)
         });

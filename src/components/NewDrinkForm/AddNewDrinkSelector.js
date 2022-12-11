@@ -16,9 +16,10 @@ class AddNewDrinkSelector extends React.Component {
     render() {
         return (
             <select className="New-drink-form-selector form-select" name="new_drink_selector" required>
+
                 {this.props.drinks.map((drink, index) => {
-                    return <option value={drink.alcoholPercent+"@"+index}
-                                   key={index}>{drink.drinkName + " - " + (drink.drinkName==="RosieLand"?(drink.alcoholPercent * 100):parseInt(drink.alcoholPercent * 100)) + "%"}</option>
+                    return <option value={"["+drink.alcoholPercent+","+drink.index+"]"}
+                                   key={index}>{drink.drinkName + " - " + (drink.drinkName==="RosieLand"?(drink.alcoholPercent * 100):parseFloat(drink.alcoholPercent * 100)).toFixed(1) + "%"}</option>
                 })}
             </select>
         );
