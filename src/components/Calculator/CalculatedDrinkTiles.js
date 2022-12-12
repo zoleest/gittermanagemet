@@ -5,6 +5,7 @@ import {UserData} from "../../contexts/UserData";
 import {CalculateAmount} from "../../functions/CalculateAmount";
 
 import './Calculator.css';
+import config from "../../config.json"
 
 class CalculatedDrinkTiles extends React.Component {
 
@@ -51,6 +52,10 @@ class CalculatedDrinkTiles extends React.Component {
 
     }
 
+    addLeadingZeros(num, totalLength) {
+        return String(num).padStart(totalLength, '0');
+    }
+
     deleteDrink() {
 
         /*
@@ -85,11 +90,12 @@ class CalculatedDrinkTiles extends React.Component {
             return object.drinkNumber === this.props.keyid;
         });
 
+        clearInterval(this.context.drunkenDrinks[index].refreshInterval);
         this.context.drunkenDrinks.splice(index,1);
         this.context.lastUpdatedArray.splice(index,1);
 
 
-        this.context.amount = CalculateAmount(this.context.drunkenDrinks, this.context.consumeRate);
+        this.context.amount = CalculateAmount(this.context.drunkenDrinks, this.context.consumeRate, config.consumeTimeInMin, config.maxElapsedMinutes);
 
 
         localStorage.setItem('drinks', JSON.stringify(this.context.drunkenDrinks.filter(drink=>{return drink.displayed})));
@@ -117,7 +123,7 @@ class CalculatedDrinkTiles extends React.Component {
                                 <div className="col-6 text-start">
                                     <h1>{this.state.drinkName}</h1>
                                     <h2>Elfogyasztott mennyiség: {this.state.drinkAmount}ml</h2>
-                                    <h2>Eltelt idő: {this.state.drinkTime === 0?"Kevesebb, mint 0.5":"Legalább " + parseFloat(this.state.drinkTime-0.5)}  óra</h2>
+                                    <h2>Eltelt idő: {this.state.drinkTime < config.maxElapsedMinutes?(this.state.drinkTime < 30?"Még nem mérhető": (this.addLeadingZeros(Math.floor((this.state.drinkTime-30)/60),2)+":"+ this.addLeadingZeros(((this.state.drinkTime-30)%60),2))):("Több  mint "+(config.maxElapsedMinutes/60)  +" óra!")}</h2>
                                     <h3>Alkoholtartalom: {this.state.drinkPercentage * 100}%</h3>
                                     <h4>{(this.state.drinkName==="Rémy Martin konyak" && this.props.keyid === 0)?"HÉ! ÉN IS KÉREK!":""}</h4>
                                 </div>

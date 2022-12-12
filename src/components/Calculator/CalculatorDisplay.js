@@ -5,6 +5,7 @@ import CalculatedDrinks from "./CalculatedDrinks";
 import CalculatorInfoBox from "./CalculatorInfoBox";
 import {CalculateRemainingDrinksAfterElapsedTime} from "../../functions/CalculateElapsedTime";
 import {CalculateAmount} from "../../functions/CalculateAmount";
+import config from "../../config.json";
 
 
 class CalculatorDisplay extends React.Component {
@@ -17,6 +18,7 @@ class CalculatorDisplay extends React.Component {
 
         context.elapsedTime = null;
         context.lastUpdatedArray= Array(0);
+        context.drinkIntervals = [];
 
 
        if(localStorage.getItem('personalData') !== null){
@@ -28,7 +30,7 @@ class CalculatorDisplay extends React.Component {
 
         }
 
-        context.timeRate = 1000*60*60;
+        context.timeRate = 1000* config.counterStepsInSeconds;
 
 
 
@@ -62,17 +64,17 @@ class CalculatorDisplay extends React.Component {
                         context.drunkenDrinks[index].drinkTime++;
                         lastUpdatedArray[index] = Date();
                         context.lastUpdatedArray = lastUpdatedArray;
-                        context.amount =  CalculateAmount(context.drunkenDrinks, context.consumeRate);
+                        context.amount =  CalculateAmount(context.drunkenDrinks, context.consumeRate, config.consumeTimeInMin, config.maxElapsedMinutes);
                         localStorage.setItem('drinks', JSON.stringify(context.drunkenDrinks));
                         localStorage.setItem('lastUpdated', JSON.stringify(context.lastUpdatedArray));
                         context.updateDisplay();
 
 
-                        context.elapsedTimeInterval =  setInterval(function (context, index) {
+                        context.drunkenDrinks.refreshInterval =  setInterval(function (context, index) {
 
                            lastUpdatedArray[index] = Date();
                             context.lastUpdatedArray = lastUpdatedArray;
-                            context.amount =  CalculateAmount(context.drunkenDrinks, context.consumeRate);
+                            context.amount =  CalculateAmount(context.drunkenDrinks, context.consumeRate,  config.consumeTimeInMin, config.maxElapsedMinutes);
                             context.drunkenDrinks[index].drinkTime ++;
                             localStorage.setItem('drinks', JSON.stringify(context.drunkenDrinks));
                             localStorage.setItem('lastUpdated', JSON.stringify(context.lastUpdatedArray));
@@ -92,7 +94,7 @@ class CalculatorDisplay extends React.Component {
 
             }
 
-            context.amount = CalculateAmount(context.drunkenDrinks, context.consumeRate);
+            context.amount = CalculateAmount(context.drunkenDrinks, context.consumeRate, config.consumeTimeInMin, config.maxElapsedMinutes);
 
         }
 

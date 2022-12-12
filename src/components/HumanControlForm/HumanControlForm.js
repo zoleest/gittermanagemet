@@ -20,7 +20,7 @@ class HumanControlForm extends React.Component {
         let personalData = {
             "weight": event.target.weight.value,
             "gender": event.target.gender.value,
-            "consumeRate": parseInt(event.target.weight.value) * 0.1
+            "consumeRate": parseInt(event.target.weight.value) * 0.1 / 60
         };
 
         this.context.weight = personalData.weight;

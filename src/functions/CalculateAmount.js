@@ -1,50 +1,54 @@
-export const CalculateAmount = function(Drinks, ConsumeRate) {
+export const CalculateAmount = function (Drinks, ConsumeRate, consumationTime, maxElapsedTime) {
+
+    let filteredDrinks = Drinks.filter(drink=>{return drink.drinkTime < maxElapsedTime});
+
+    if (filteredDrinks.length > 0) {
 
 
 
-    let amountPerHourLocal = Array(24).fill(0);
-    let filteredDrinks = Drinks.filter(drink=>{return drink.displayed});
+        let sortedDrinks = filteredDrinks.sort((a, b) => {
+            return a.drinkTime - b.drinkTime
+        });
+        let maxTime = sortedDrinks[0].drinkTime + 1;
+
+        let amountPerTimeLocal = Array(maxTime).fill(0);
 
 
-
-    for (let drinkCount = 0; drinkCount < filteredDrinks.length; drinkCount++) {
-
+        for (let drinkCount = 0; drinkCount < Drinks.length; drinkCount++) {
 
 
-        let remainingAlcohol = ((parseFloat(filteredDrinks[drinkCount].drinkValue) * 100 * 0.789 * (filteredDrinks[drinkCount].drinkAmount / 100)))
+            let remainingAlcohol = ((parseFloat(Drinks[drinkCount].drinkValue) * 100 * 0.789 * (Drinks[drinkCount].drinkAmount / 100)))
 
 
+            let realElapsedTime =  Drinks[drinkCount].drinkTime <= 30?0:Drinks[drinkCount].drinkTime-consumationTime;
 
 
-
-        for (let remainingHours = (23- filteredDrinks[drinkCount].drinkTime);( remainingHours <= 23 && remainingAlcohol > 0); remainingHours++) {
-            if ((amountPerHourLocal[remainingHours] + remainingAlcohol) <= ConsumeRate) {
-                amountPerHourLocal[remainingHours] = amountPerHourLocal[remainingHours] + remainingAlcohol;
-                remainingAlcohol = 0;
-
-            } else {
-
-                if (remainingHours < 23) {
-                    remainingAlcohol -=  ConsumeRate - amountPerHourLocal[remainingHours];
-                    amountPerHourLocal[remainingHours] = ConsumeRate;
-
+            for (let remainingTimes = ((maxTime - 1) - realElapsedTime); (remainingTimes <= (maxTime - 1) && remainingAlcohol > 0); remainingTimes++) {
+                if ((amountPerTimeLocal[remainingTimes] + remainingAlcohol) <= ConsumeRate) {
+                    amountPerTimeLocal[remainingTimes] = amountPerTimeLocal[remainingTimes] + remainingAlcohol;
+                    remainingAlcohol = 0;
 
                 } else {
-                    amountPerHourLocal[remainingHours] += remainingAlcohol;
+
+                    if (remainingTimes < (maxTime - 1)) {
+                        remainingAlcohol -= ConsumeRate - amountPerTimeLocal[remainingTimes];
+                        amountPerTimeLocal[remainingTimes] = ConsumeRate;
+
+
+                    } else {
+                        amountPerTimeLocal[remainingTimes] += remainingAlcohol;
+                    }
+
                 }
 
+
             }
-
-
 
 
         }
 
 
-
-
+        return amountPerTimeLocal[(maxTime-1)];
     }
 
-
-        return amountPerHourLocal[23];
 }

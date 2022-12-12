@@ -4,6 +4,7 @@ import fontawesome from '@fortawesome/fontawesome'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faHelicopter, faCar, faBan} from '@fortawesome/free-solid-svg-icons';
 import {CalculateAmount} from "../../functions/CalculateAmount";
+import config from "../../config.json";
 
 
 fontawesome.library.add(faHelicopter, faCar, faBan);
@@ -18,7 +19,7 @@ class CalculatorPerMill extends React.Component {
         this.state={}
 
        // console.log(context.amount);
-    context.amount = CalculateAmount(context.drunkenDrinks, context.consumeRate);
+    context.amount = CalculateAmount(context.drunkenDrinks, context.consumeRate, config.consumeTimeInMin, config.maxElapsedMinutes);
 
     }
 
@@ -39,7 +40,18 @@ class CalculatorPerMill extends React.Component {
         let consumeRate = this.context.consumeRate;
 
 
-        return Math.ceil(amount / consumeRate);
+        if(this.context.drunkenDrinks.filter(drink=>{return drink.drinkTime < config.consumeTimeInMin}).length > 0){
+
+            let sortedDrinks = this.context.drunkenDrinks.sort((a, b) => {
+                return b.drinkTime - a.drinkTime
+            });
+
+            return Math.ceil(amount / consumeRate) + (config.consumeTimeInMin - sortedDrinks[0].drinkTime);
+        }else{
+            return Math.ceil(amount / consumeRate);
+        }
+
+
 
     }
 
@@ -69,7 +81,7 @@ class CalculatorPerMill extends React.Component {
                         <div
                             className={"Calculator-display-calculated-data m-3 p-3 text-white text-center" + (( this.context.bac > 0) ? " bg-danger" : " bg-success")}>
                             Vérezrelék: {this.context.bac} <br/>
-                            Ittaság várható időtartama: legalább további {remainingTime}.5 óra. <br/>
+                            Ittaság várható időtartama: legalább további {Math.floor(remainingTime/60)} óra és {remainingTime%60} perc . <br/>
                             <h1><FontAwesomeIcon icon={'ban'}/> <FontAwesomeIcon icon={'car'}/> NE ÜLJ GÉPJÁRMŰBE! <a
                                 href="https://www.youtube.com/watch?v=a0DbzUe-r4Q&ab_channel=Fazlija"
                                 className="helicopter-link"><FontAwesomeIcon icon={'helicopter'}/></a> <FontAwesomeIcon

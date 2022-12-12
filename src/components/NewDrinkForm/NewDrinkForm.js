@@ -3,6 +3,7 @@ import Drinks from "./drinks.json";
 import AddNewDrinkSelector from "./AddNewDrinkSelector";
 import {UserData} from "../../contexts/UserData";
 import {CalculateAmount} from "../../functions/CalculateAmount";
+import config from "../../config.json";
 
 
 class NewDrinkForm extends React.Component {
@@ -16,7 +17,7 @@ class NewDrinkForm extends React.Component {
             isOpened: false
         }
 
-        context.elapsedTimeInterval =null;
+        context.elapsedTimeInterval = null;
 
         this.openFromControls = this.openFromControls.bind(this);
         this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -68,37 +69,38 @@ class NewDrinkForm extends React.Component {
         this.context.amountPerHour = amountPerHourLocal;*/
 
 
+        this.context.lastUpdatedArray.push(Date());
+
+        localStorage.setItem('lastUpdated', JSON.stringify(this.context.lastUpdatedArray));
+
+        let actualItemInLastUpdatedArray = this.context.lastUpdatedArray.length - 1;
+        /*   setInterval(function (context, elapsedTime) {
+                TimeOutCounter(context, elapsedTime, CalculateRemainingDrinksAfterElapsedTime, CalculateAmount);
+            }, this.context.timeRate, this.context, 1);*/
+
+        setTimeout(function (context) {
 
 
-            this.context.lastUpdatedArray.push(Date());
+            context.drunkenDrinks[actualItemInLastUpdatedArray].refreshInterval = setInterval(function (context) {
 
-           localStorage.setItem('lastUpdated', JSON.stringify(this.context.lastUpdatedArray));
+                context.drunkenDrinks[actualItemInLastUpdatedArray].drinkTime++;
 
-              let actualItemInLastUpdatedArray = this.context.lastUpdatedArray.length -1;
-            /*   setInterval(function (context, elapsedTime) {
-                    TimeOutCounter(context, elapsedTime, CalculateRemainingDrinksAfterElapsedTime, CalculateAmount);
-                }, this.context.timeRate, this.context, 1);*/
 
-            setTimeout(function(context){
-
-                setInterval(function(context){
-
-                    context.drunkenDrinks[actualItemInLastUpdatedArray].drinkTime++;
-                    context.amount =  CalculateAmount(context.drunkenDrinks, context.consumeRate);
+                    context.amount = CalculateAmount(context.drunkenDrinks, context.consumeRate, config.consumeTimeInMin, config.maxElapsedMinutes);
                     context.lastUpdatedArray[actualItemInLastUpdatedArray] = Date();
+
                     localStorage.setItem("lastUpdated", JSON.stringify(context.lastUpdatedArray));
+                   localStorage.setItem("drinks", JSON.stringify(context.drunkenDrinks));
 
                     context.updateDisplay();
-                }, context.timeRate,context);
+
+            }, context.timeRate, context);
 
 
+        }, this.context.timeRate, this.context);
 
 
-            }, this.context.timerate/2, this.context);
-
-
-           // localStorage.setItem('lastUpdate', Date());
-
+        // localStorage.setItem('lastUpdate', Date());
 
 
         let drunkenDrinksLocal = this.context.drunkenDrinks;
@@ -114,9 +116,10 @@ class NewDrinkForm extends React.Component {
         this.context.drunkenDrinks = drunkenDrinksLocal;
 
 
-        this.context.amount = CalculateAmount(this.context.drunkenDrinks, this.context.consumeRate);
-        localStorage.setItem('drinks', JSON.stringify(this.context.drunkenDrinks.filter(drink=>{return drink.displayed})));
-
+        this.context.amount = CalculateAmount(this.context.drunkenDrinks, this.context.consumeRate, config.consumeTimeInMin, config.maxElapsedMinutes);
+        localStorage.setItem('drinks', JSON.stringify(this.context.drunkenDrinks.filter(drink => {
+            return drink.displayed
+        })));
 
 
         this.context.updateDisplay();
