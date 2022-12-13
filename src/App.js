@@ -108,7 +108,7 @@ class App extends React.Component {
                             <FontAwesomeIcon icon={'flag-checkered'}/> {">>"}Kibaszott
                             mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/><span>Version code: Shabala</span><span
                             onClick={this.revealInfoBox} className="info-link">{">>"}Információk{"<<"}</span></p>
-                        <img src={Yor} id="yor" alt="Yor" title="Yor"/>
+                        <img src="https://halapidavid.github.io/veralkoholszint/static/media/Yor.b7c09615cd3a9d77a60e.png" id="yor" alt="Yor" title="Yor"/>
                     </div>
 
                     <UserData.Provider value={this.state}>
