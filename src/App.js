@@ -62,7 +62,7 @@ class App extends React.Component {
                         fogyasztás óta eltelt időtartam alapján számítja ki a hozzávetőleges véralkohol szintet. A
                         kalkulátor úgy működik, hogy az eltelt időtartamot folyamatosan méri, még bezárt állapotban
                         is,
-                        viszont csupán az elmúlt 24 órában elfogyasztott italokat számolja.</p>
+                        viszont csupán az elmúlt 48 órában elfogyasztott italokat számolja.</p>
                     <h3 className="pt-2">Példa a használatára</h3>
                     <p className="text-justify">A megnyitás előtt egy órával megittunk két doboz sört. Ebben az
                         esetben felvehetünk 2x 500ml
@@ -71,7 +71,7 @@ class App extends React.Component {
                         számon. Célszerű a kalkulátort úgy használni, hogy az elfogyasztott italt rögtön, 0 órás
                         eltelt
                         idővel vesszük fel.</p>
-                    <h3 className="pt-2">Miért számol minden eltelt óránál fél órával többet?</h3>
+                    <h3 className="pt-2">Mit jelent, hogy még nem mérhető??</h3>
                     <p className="text-justify">Az interneten fellelhető átlagos adat szerint körülbelül fél órával
                         az ital elfogyasztása után
                         jelentkeznek az első testi tünetek. Ez alapján ad hozzá minden időtartamhoz még fél órát a
@@ -106,7 +106,7 @@ class App extends React.Component {
                         <p className="text-dark"><a className="link-dark"
                                                      href="https://www.youtube.com/watch?v=V2E8mIFKMl8&ab_channel=kriszpy">
                             <FontAwesomeIcon icon={'flag-checkered'}/> {">>"}Kibaszott
-                            mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/><span>Version code: Shabala</span><span
+                            mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/><span>Ennyiszer rúgtunk be, amég a program elkészült: 7</span><span
                             onClick={this.revealInfoBox} className="info-link">{">>"}Információk{"<<"}</span></p>
                         <img src="https://halapidavid.github.io/veralkoholszint/static/media/Yor.b7c09615cd3a9d77a60e.png" id="yor" alt="Yor" title="Yor"/>
                     </div>

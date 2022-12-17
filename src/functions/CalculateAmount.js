@@ -2,15 +2,15 @@ export const CalculateAmount = function (Drinks, ConsumeRate, consumationTime, m
 
     let filteredDrinks = Drinks.filter(drink=>{return drink.drinkTime < maxElapsedTime});
 
+
     if (filteredDrinks.length > 0) {
 
 
 
         let sortedDrinks = filteredDrinks.sort((a, b) => {
-            return a.drinkTime - b.drinkTime
+            return b.drinkTime - a.drinkTime
         });
         let maxTime = sortedDrinks[0].drinkTime + 1;
-
         let amountPerTimeLocal = Array(maxTime).fill(0);
 
 
