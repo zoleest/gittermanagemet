@@ -45,53 +45,7 @@ class App extends React.Component {
     render() {
 
         return (<div className="page">
-                <div className="container-fluid bg-dark text-light position-absolute info-box p-5 d-none"
-                     id="info-box">
-                    <h1 className="text-center">Tájékoztató</h1>
-                    <h2 className="text-danger text-center pt-2">
-                        Figyelem!
-                    </h2>
-                    <p className="text-justify">Ez a véralkohol szint kalkulátor csupán ön-szórakoztatás és a React
-                        keretrendszer használatának
-                        gyakorlására készült, így a benne megjelenő adatok csupán hozzávetőlegesek, a valóságban a
-                        számított értékekhez képest pontatlanok lehetnek. <br/>
-                    </p>
-                    <h3 className="pt-2 ">Hogyan működik a kalkulátor?</h3>
-                    <p className="text-justify">A kalkulátor a felhasználó által megadott szeszes italok
-                        mennyiségéből, alkohol-tartalmából, a
-                        fogyasztás óta eltelt időtartam alapján számítja ki a hozzávetőleges véralkohol szintet. A
-                        kalkulátor úgy működik, hogy az eltelt időtartamot folyamatosan méri, még bezárt állapotban
-                        is,
-                        viszont csupán az elmúlt 48 órában elfogyasztott italokat számolja.</p>
-                    <h3 className="pt-2">Példa a használatára</h3>
-                    <p className="text-justify">A megnyitás előtt egy órával megittunk két doboz sört. Ebben az
-                        esetben felvehetünk 2x 500ml
-                        sört, két órás időintervallummal. Az idő múlásával az eltelt idők maguktól nőnek, így ha rá
-                        két órára megiszunk még egy dobozzal, akkor a korábbiakat már négy órás eltelt idővel tartja
-                        számon. Célszerű a kalkulátort úgy használni, hogy az elfogyasztott italt rögtön, 0 órás
-                        eltelt
-                        idővel vesszük fel.</p>
-                    <h3 className="pt-2">Mit jelent, hogy még nem mérhető??</h3>
-                    <p className="text-justify">Az interneten fellelhető átlagos adat szerint körülbelül fél órával
-                        az ital elfogyasztása után
-                        jelentkeznek az első testi tünetek. Ez alapján ad hozzá minden időtartamhoz még fél órát a
-                        kalkulátor.</p>
-                    <h3 className="pt-2">Mit tegyek, ha rosszul vettem fel egy italt?</h3>
-                    <p className="text-justify">Minden ital mellett megjelenik egy törlés gomb. Törlés után nincs
-                        mód annak visszavonására, ám az
-                        adott italt újra felvehetjük, ha ismerjük annak adatait.</p>
-                    <h3 className="pt-2">Mi számít ittas vezetésnek?</h3>
-                    <p className="text-justify">A törvény szerint ittas vezetésnek abban az esetben minősül, ha a
-                        gépjárműt vezető embernek a vérében 0.50g/l ezrelék mennyiségben (szonda fújása esetén
-                        0.25mg/l ezrelék) található alkohol. 1g alkohol 8ml tiszta alkoholnak felel meg. </p>
-                    <h3 className="pt-2">Hol tudom beszerezni a RosieLandet?</h3>
-                    <p className="text-justify">Írj rám privátban, bár nem ajánlom a beszerzését.</p>
-                    <h3 className="pt-2 text-center info-back-button" onClick={this.hideInfoBox}>{">>"}Vissza a
-                        kalkulátorra{"<<"}</h3>
-
-
-                </div>
-                <div className="content" id="content">
+                               <div className="content" id="content">
 
                     <div className="header w-100 bg-white position-relative">
                         <div className="header-text-box w-100  ">
@@ -108,7 +62,7 @@ class App extends React.Component {
                             <FontAwesomeIcon icon={'flag-checkered'}/> {">>"}Kibaszott
                             mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/><span>Ennyiszer rúgtunk be, amég a program elkészült: 7.5</span><span
                             onClick={this.revealInfoBox} className="info-link">{">>"}Információk{"<<"}</span></p>
-                        <img src={Yor} id="yor" alt="Yor" title="Yor"/>
+                        <img src={Yor} id="yor" alt="Yor by Touyarokii" title="Yor by Touyarokii"/>
                     </div>
 
                     <UserData.Provider value={this.state}>
@@ -130,7 +84,7 @@ class App extends React.Component {
 
 
                 </div>
-            {/* <div id="footer" className="container-fluid bg-dark text-light">Készítette: Halápi Dávid. <a className="link-light ps-2" href="http://halapidavid.hu"><FontAwesomeIcon icon={'globe'}/> halapidavid.hu</a>  <span className="ps-4">  E-mail: <a className="link-light"  href="mailto:info@halapidavid.hu"><FontAwesomeIcon icon={'envelope'}/> info@halapidavid.hu</a></span></div> */}
+                <div id="footer" className="container-fluid bg-dark text-light"><span>Készítette: Halápi Dávid.</span> <span className="ms-5"> Yort készítette: <a className="link-light ps-2" href="https://www.instagram.com/touyarokii/">@Touyarokii</a> </span></div>{/*<a className="link-light ps-2" href="http://halapidavid.hu"><FontAwesomeIcon icon={'globe'}/> halapidavid.hu</a>  <span className="ps-4">  E-mail: <a className="link-light"  href="mailto:info@halapidavid.hu"><FontAwesomeIcon icon={'envelope'}/> info@halapidavid.hu</a></span></div> */}
 
 
         </div>
