@@ -106,7 +106,7 @@ class App extends React.Component {
                         <p className="text-dark"><a className="link-dark"
                                                      href="https://www.youtube.com/watch?v=V2E8mIFKMl8&ab_channel=kriszpy">
                             <FontAwesomeIcon icon={'flag-checkered'}/> {">>"}Kibaszott
-                            mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/><span>Ennyiszer rúgtunk be, amég a program elkészült: 7</span><span
+                            mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/><span>Ennyiszer rúgtunk be, amég a program elkészült: 7.5</span><span
                             onClick={this.revealInfoBox} className="info-link">{">>"}Információk{"<<"}</span></p>
                         <img src={Yor} id="yor" alt="Yor" title="Yor"/>
                     </div>
