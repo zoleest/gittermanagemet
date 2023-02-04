@@ -8,7 +8,9 @@ export const CalculateAmount = function (Drinks, ConsumeRate, consumationTime, m
 
 
         let sortedDrinks = filteredDrinks.sort((a, b) => {
+
             return b.drinkTime - a.drinkTime;
+
         });
         let maxTime = sortedDrinks[0].drinkTime + 1;
         let amountPerTimeLocal = Array(maxTime).fill(0);
