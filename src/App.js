@@ -47,14 +47,14 @@ class App extends React.Component {
         return (<div className="page">
                 <div className="container-fluid bg-dark text-light position-absolute info-box p-5 d-none"
                      id="info-box">
-                    <h1 className="text-center">Tájékoztató</h1>
+                    <h2 className="text-center h1">Tájékoztató</h2>
                     <h2 className="text-danger text-center pt-2">
                         Figyelem!
                     </h2>
                     <p className="text-justify">Ez a véralkohol szint kalkulátor csupán ön-szórakoztatás és a React
                         keretrendszer használatának
                         gyakorlására készült, így a benne megjelenő adatok csupán hozzávetőlegesek, a valóságban a
-                        számított értékekhez képest pontatlanok lehetnek. <br/>
+                        számított értékekhez képest pontatlanok lehetnek. A valós szint méréhez professzionális mérőeszközökre van szükség! <br/>
                     </p>
                     <h3 className="pt-2 ">Hogyan működik a kalkulátor?</h3>
                     <p className="text-justify">A kalkulátor a felhasználó által megadott szeszes italok
@@ -106,7 +106,7 @@ class App extends React.Component {
                         <p className="text-dark"><a className="link-dark"
                                                      href="https://www.youtube.com/watch?v=V2E8mIFKMl8&ab_channel=kriszpy">
                             <FontAwesomeIcon icon={'flag-checkered'}/> {">>"}Kibaszott
-                            mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/><span>Ennyiszer rúgtunk be, amég a program elkészült: 7.5</span><span
+                            mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/><span>Ennyiszer rúgtunk be, amég a program elkészült: 11.5</span><span
                             onClick={this.revealInfoBox} className="info-link">{">>"}Információk{"<<"}</span></p>
                         <img src="https://halapidavid.github.io/veralkoholszint/static/media/Yor.b7c09615cd3a9d77a60e.png" id="yor" alt="Yor" title="Yor"/>
                     </div>
