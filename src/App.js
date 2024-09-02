@@ -1,146 +1,246 @@
 import './App.css';
-import NewDrinkForm from "./components/NewDrinkForm/NewDrinkForm";
+import NewGitterForm from "./components/NewGitterFrom/NewGitterForm";
 import React from 'react';
 import CalculatorDisplay from "./components/Calculator/CalculatorDisplay";
-import HumanControlForm from "./components/HumanControlForm/HumanControlForm";
-import {UserData} from "./contexts/UserData";
-import Yor from './Images/Yor.png';
-
-import fontawesome from '@fortawesome/fontawesome'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faFlagCheckered, faGlobe, faEnvelope} from '@fortawesome/free-solid-svg-icons';
-
-
-fontawesome.library.add(faFlagCheckered);
-fontawesome.library.add(faGlobe);
-fontawesome.library.add(faEnvelope);
-
+import GitterPropSetForm from "./components/GitterPropSetFrom/GitterPropSetFrom";
+import addNotification from 'react-push-notification';
 
 
 class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            "weight": 0,
-            "gender": "",
-            "drunkenDrinks": [],
-            "consumeRate": 0,
+
+        if (localStorage.getItem("gitter_data") != null && !this.underResetting) {
+
+            this.state = JSON.parse(localStorage.getItem("gitter_data"));
+
+        } else {
+
+            this.state = {
+
+                "shiftStartDate": Date.now() + (this.dateOffset * 60 * 1000),
+
+                "gitterPieceCounter": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "machineCycleTime": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "machineNestCounter": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+
+                "appliedGitters": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "gitterRemainingSecs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "gitterRemainingGitters": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],              
+                "notifiedAboutGitters": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+
+                "machineNames": [
+                    "1300",
+                    "1000",
+                    "250",
+                    "650",
+                    "800",
+                    "500/1",
+                    "500/2",
+                    "200",
+                    "420C",
+                    "100",
+                    "50",
+                    "470E",
+                    "420B",
+                    "E170/1",
+                    "320C",
+                    "E170/2",
+                    "E440"
+                ]
+
+
+
+            }
+
+            localStorage.setItem('gitter_data', JSON.stringify(this.state));
+            this.underResetting = false;
+
+
         }
 
 
     }
 
-    hideInfoBox() {
-        document.getElementById('info-box').classList.add("d-none");
-        document.getElementById('content').classList.remove("d-none");
+    dateObject = new Date();
+    dateOffset = Math.abs(this.dateObject.getTimezoneOffset());
+    underResetting = false;
+
+    
+ 
+    reset = ()=>{
+
+        this.underResetting = true;
+        localStorage.removeItem('gitter_data');
+        this.setState({
+
+            "shiftStartDate": Date.now() + (this.dateOffset * 60 * 1000),
+
+            "gitterPieceCounter": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "machineCycleTime": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "machineNestCounter": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+
+            "appliedGitters": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "gitterRemainingSecs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "gitterRemainingGitters": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "notifiedAboutGitters": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+
+            "machineNames": [
+                "1300",
+                "1000",
+                "250",
+                "650",
+                "800",
+                "500/1",
+                "500/2",
+                "200",
+                "420C",
+                "100",
+                "50",
+                "470E",
+                "420B",
+                "E170/1",
+                "320C",
+                "E170/2",
+                "E440"
+            ]
+
+
+
+        });
+
+        addNotification({
+            title: 'Műszak elindítva!',
+            subtitle: 'Műszak sikeresen elindítva!',
+            message: `Indítás időpontja: ${new Date(Date.now()).toLocaleTimeString("hu-HU")}`,
+            theme: 'darkblue',
+            native: true // when using native, your OS will handle theming.
+        });
+
+        window.location.reload(false);
     }
 
-    revealInfoBox() {
+   
 
-        document.getElementById('info-box').classList.remove("d-none");
-        document.getElementById('content').classList.add("d-none");
+    componentDidMount() {
+
+        setInterval(async () => {
+
+            let actualTimestamp = Date.now() + (this.dateOffset * 60 * 1000);
+           
+
+            let tempRemainingTimes = [];
+            let tempRemainingGitters = [];
+            let tempNotifications = [];
+
+            for (let machineNumber = 0; machineNumber < this.state.appliedGitters.length; machineNumber++) {
+                tempNotifications[machineNumber] = this.state.notifiedAboutGitters[machineNumber]?1:0;
+                if (this.state.appliedGitters[machineNumber] > 0) {
+
+                    
+                    let remainingTime = Math.floor((this.state.shiftStartDate / 1000) + ((this.state.appliedGitters[machineNumber]) * (this.state.gitterPieceCounter[machineNumber] / this.state.machineNestCounter[machineNumber] * (this.state.machineCycleTime[machineNumber]))) - (actualTimestamp / 1000));
+                    tempNotifications[machineNumber] = this.state.notifiedAboutGitters[machineNumber]?1:0;
+                    if (remainingTime > 1) {
+                        tempRemainingTimes[machineNumber] = remainingTime;
+                        tempRemainingGitters[machineNumber] = Math.floor(remainingTime / (this.state.gitterPieceCounter[machineNumber] / this.state.machineNestCounter[machineNumber] * (this.state.machineCycleTime[machineNumber])));
+                        
+                        if(tempRemainingGitters[machineNumber] === 0 && !this.state.notifiedAboutGitters[machineNumber]){
+                            
+                            tempNotifications[machineNumber] = 1;
+                            
+                            addNotification({
+                                title: `Gitter fogyás! (${this.state.machineNames[machineNumber]})`,
+                                subtitle: 'Utolsó gittert kezdik az egyik gépednél! (elvileg...)',
+                                message: `Utolsó gittert kezdik a következő gépnél: ${this.state.machineNames[machineNumber]}`,
+                                theme: 'darkblue',
+                                native: true // when using native, your OS will handle theming.
+                            });
+
+                        }
+                   
+                    } else {
+                        tempRemainingTimes[machineNumber] = 0;
+                        tempRemainingGitters[machineNumber] = 0;
+                    }
+                } else {
+                    tempRemainingTimes[machineNumber] = 0;
+                    tempRemainingGitters[machineNumber] = 0;
+                }
+            }
+
+
+            let newStateObject = {
+                "gitterRemainingSecs": tempRemainingTimes,
+                "gitterRemainingGitters": tempRemainingGitters,
+                "notifiedAboutGitters": tempNotifications
+            };
+
+
+            if(!this.underResetting){
+
+                localStorage.setItem('gitter_data', JSON.stringify({
+                    "gitterRemainingSecs": tempRemainingTimes,
+                    "gitterRemainingGitters": tempRemainingGitters,
+                "notifiedAboutGitters": tempNotifications,
+                    ...this.state
+                }
+                ));
+    
+                this.setState(newStateObject);
+
+            }
+            
+        }, 5000);
     }
+
+
 
     render() {
 
         return (<div className="page">
-<<<<<<< HEAD
-                <div className="container-fluid bg-dark text-light position-absolute info-box p-5 d-none"
-                     id="info-box">
-                    <h2 className="text-center h1">Tájékoztató</h2>
-                    <h2 className="text-danger text-center pt-2">
-                        Figyelem!
-                    </h2>
-                    <p className="text-justify">Ez a véralkohol szint kalkulátor csupán ön-szórakoztatás és a React
-                        keretrendszer használatának
-                        gyakorlására készült, így a benne megjelenő adatok csupán hozzávetőlegesek, a valóságban a
-                        számított értékekhez képest pontatlanok lehetnek. A valós szint méréhez professzionális mérőeszközökre van szükség! <br/>
-                    </p>
-                    <h3 className="pt-2 ">Hogyan működik a kalkulátor?</h3>
-                    <p className="text-justify">A kalkulátor a felhasználó által megadott szeszes italok
-                        mennyiségéből, alkohol-tartalmából, a
-                        fogyasztás óta eltelt időtartam alapján számítja ki a hozzávetőleges véralkohol szintet. A
-                        kalkulátor úgy működik, hogy az eltelt időtartamot folyamatosan méri, még bezárt állapotban
-                        is,
-                        viszont csupán az elmúlt 48 órában elfogyasztott italokat számolja.</p>
-                    <h3 className="pt-2">Példa a használatára</h3>
-                    <p className="text-justify">A megnyitás előtt egy órával megittunk két doboz sört. Ebben az
-                        esetben felvehetünk 2x 500ml
-                        sört, két órás időintervallummal. Az idő múlásával az eltelt idők maguktól nőnek, így ha rá
-                        két órára megiszunk még egy dobozzal, akkor a korábbiakat már négy órás eltelt idővel tartja
-                        számon. Célszerű a kalkulátort úgy használni, hogy az elfogyasztott italt rögtön, 0 órás
-                        eltelt
-                        idővel vesszük fel.</p>
-                    <h3 className="pt-2">Mit jelent, hogy még nem mérhető??</h3>
-                    <p className="text-justify">Az interneten fellelhető átlagos adat szerint körülbelül fél órával
-                        az ital elfogyasztása után
-                        jelentkeznek az első testi tünetek. Ez alapján ad hozzá minden időtartamhoz még fél órát a
-                        kalkulátor.</p>
-                    <h3 className="pt-2">Mit tegyek, ha rosszul vettem fel egy italt?</h3>
-                    <p className="text-justify">Minden ital mellett megjelenik egy törlés gomb. Törlés után nincs
-                        mód annak visszavonására, ám az
-                        adott italt újra felvehetjük, ha ismerjük annak adatait.</p>
-                    <h3 className="pt-2">Mi számít ittas vezetésnek?</h3>
-                    <p className="text-justify">A törvény szerint ittas vezetésnek abban az esetben minősül, ha a
-                        gépjárműt vezető embernek a vérében 0.50g/l ezrelék mennyiségben (szonda fújása esetén
-                        0.25mg/l ezrelék) található alkohol. 1g alkohol 8ml tiszta alkoholnak felel meg. </p>
-                    <h3 className="pt-2">Hol tudom beszerezni a RosieLandet?</h3>
-                    <p className="text-justify">Írj rám privátban, bár nem ajánlom a beszerzését.</p>
-                    <h3 className="pt-2 text-center info-back-button" onClick={this.hideInfoBox}>{">>"}Vissza a
-                        kalkulátorra{"<<"}</h3>
+            <div className="content" id="content">
+
+                <div className="header w-100 bg-white position-relative">
+                    <div className="header-text-box w-100  ">
 
 
-                </div>
-                <div className="content" id="content">
-=======
-                               <div className="content" id="content">
->>>>>>> 2bf2b2f31a496dcebf1247fdc66c77d150830fcc
-
-                    <div className="header w-100 bg-white position-relative">
-                        <div className="header-text-box w-100  ">
-
-
-                            <div className="w-100 mt-3 header">
-                                <h1 className="text-dark text-center">Véralkoholszint kalkulátor</h1>
-                                <h3 className="text-dark text-center">Fogyassz felelősséggel!</h3>
-                            </div>
-
+                        <div className="w-100 mt-3 header">
+                            <h1 className="text-dark text-center">Gitter kiosztás felügyelő <br/>@ Warema Plastik Nagykanizsa</h1>
+                            <h3 className="text-dark text-center">Készítette: Halápi Dávid Zoltán</h3>
                         </div>
-                        <p className="text-dark"><a className="link-dark"
-                                                     href="https://www.youtube.com/watch?v=V2E8mIFKMl8&ab_channel=kriszpy">
-                            <FontAwesomeIcon icon={'flag-checkered'}/> {">>"}Kibaszott
-<<<<<<< HEAD
-                            mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/><span>Ennyiszer rúgtunk be, amég a program elkészült: 11.5</span><span
-                            onClick={this.revealInfoBox} className="info-link">{">>"}Információk{"<<"}</span></p>
-                        <img src="https://halapidavid.github.io/veralkoholszint/static/media/Yor.b7c09615cd3a9d77a60e.png" id="yor" alt="Yor" title="Yor"/>
-=======
-                            mérés!{"<<"} <FontAwesomeIcon icon={'flag-checkered'}/></a><br/><span>Ennyiszer rúgtunk be, amég a program elkészült: 7.5</span><span
-                            onClick={this.revealInfoBox} className="info-link">{">>"}Információk{"<<"}</span></p>
-                        <img src={Yor} id="yor" alt="Yor by Touyarokii" title="Yor by Touyarokii"/>
->>>>>>> 2bf2b2f31a496dcebf1247fdc66c77d150830fcc
+
+                    </div>
+                    <br />
+                </div>
+
+
+                <div className="App row">
+
+                    <div className="Calculated-values col-12 col-lg-9">
+                        <CalculatorDisplay appReference={this} key={Math.random()}/>
                     </div>
 
-                    <UserData.Provider value={this.state}>
-                        <div className="App row">
-                            <div className="Calculated-values col-12 col-lg-9">
-                                <CalculatorDisplay/>
-                            </div>
-                            <div className="col-12 col-lg-3 pe-lg-4">
-                                <div className="New-drink-form-container">
-                                    <NewDrinkForm appReference={this}/>
-                                </div>
-                                <div className="Human-control-form">
-                                    <HumanControlForm appReference={this}/>
-                                </div>
 
-                            </div>
+                    <div className="col-12 col-lg-3 pe-lg-4">
+                    <div className="New-drink-form-container mb-4">
+                            <button className="btn btn-success p-3 d-block w-100" onClick={this.reset}>Műszak indítása</button>
                         </div>
-                    </UserData.Provider>
+                        <div className="Gitter-control-form mb-4 mt-2">
+                            <GitterPropSetForm appReference={this} />
+                        </div>
+                        <div className="New-drink-form-container mb-4 ">
+                            <NewGitterForm appReference={this} />
+                        </div>
+                        
+                      
 
-
+                    </div>
                 </div>
-                <div id="footer" className="container-fluid bg-dark text-light"><span>Készítette: Halápi Dávid.</span> <span className="ms-5"> Yort készítette: <a className="link-light ps-2" href="https://www.instagram.com/touyarokii/">@Touyarokii</a> </span></div>{/*<a className="link-light ps-2" href="http://halapidavid.hu"><FontAwesomeIcon icon={'globe'}/> halapidavid.hu</a>  <span className="ps-4">  E-mail: <a className="link-light"  href="mailto:info@halapidavid.hu"><FontAwesomeIcon icon={'envelope'}/> info@halapidavid.hu</a></span></div> */}
+
+
+            </div>
+            <div id="footer" className="container-fluid bg-dark text-light"><span>Készítette: Halápi Dávid Zoltán.</span></div>
 
 
         </div>

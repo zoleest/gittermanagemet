@@ -1,60 +1,58 @@
-{"homepage": ".",
-  "name": "veralkoholszint-kalkulator",
-  "version": "1.0.0",
-  "private": false,
-  "title": "Véralkoholszint mérő",
-  "dependencies": {
-    "@capacitor/core": "^4.6.0",
-    "@fortawesome/fontawesome": "^1.1.8",
-    "@fortawesome/fontawesome-svg-core": "^6.2.1",
-    "@fortawesome/free-solid-svg-icons": "^6.2.1",
-    "@fortawesome/react-fontawesome": "^0.2.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "apexcharts": "^3.36.3",
-    "gh-pages": "^4.0.0",
-    "npm-install-missing": "^0.1.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zoleest/veralkohol_mero.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zoleest/veralkohol_mero/issues"
-  }
+{
+    "homepage": ".",
+    "name": "gitter-menedzsment",
+    "version": "1.0.0",
+    "private": false,
+    "title": "Gitter menedzsment",
+    "dependencies": {
+        "@capacitor/core": "^4.6.0",
+        "@testing-library/jest-dom": "^5.16.5",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
+        "apexcharts": "^3.36.3",
+        "gh-pages": "^6.1.1",
+        "npm-install-missing": "^0.1.4",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-push-notification": "^1.5.4",
+        "react-scripts": "^5.0.1",
+        "web-vitals": "^2.1.4"
+    },
+    "scripts": {
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build",
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/zoleest/veralkohol_mero.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/zoleest/veralkohol_mero/issues"
+    }
 }

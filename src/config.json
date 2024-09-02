@@ -1,6 +1,6 @@
 {
   "counterStepsInSeconds": 60,
-  "maxElapsedMinutes": 2880,
-  "consumeTimeInMin": 30
+  "maxElapsedMinutes": 540,
+  "consumeTimeInMin": 0
 
 }
