@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/gittermanagemet/static/css/main.3f44d46f.css",
+    "main.js": "/gittermanagemet/static/js/main.26716dc6.js",
+    "index.html": "/gittermanagemet/index.html",
+    "main.3f44d46f.css.map": "/gittermanagemet/static/css/main.3f44d46f.css.map",
+    "main.26716dc6.js.map": "/gittermanagemet/static/js/main.26716dc6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3f44d46f.css",
+    "static/js/main.26716dc6.js"
+  ]
+}
