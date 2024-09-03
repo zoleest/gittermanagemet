@@ -27,19 +27,22 @@ class NewGitterForm extends React.Component {
 
         event.preventDefault();
 
-        let temporaryGitterArray = this.props.appReference.state.appliedGitters;
 
-        temporaryGitterArray[parseInt(event.target.new_gitter_machine_selector.value)] += parseInt(event.target.new_gitter_amount.value);
+        if (window.confirm(`Kivittél ${parseInt(event.target.new_gitter_amount.value)} gittert a(z) [${this.props.appReference.state.machineNames[parseInt(event.target.new_gitter_machine_selector.value)]}] gépre?`)) {
 
-        let newStateObject = {
-            "appliedGitters": temporaryGitterArray,
-            ...this.props.appReference.state
-        };
+            let temporaryGitterArray = this.props.appReference.state.appliedGitters;
 
-        this.props.appReference.setState(newStateObject);
-        localStorage.setItem('gitter_data', JSON.stringify(newStateObject));
+            temporaryGitterArray[parseInt(event.target.new_gitter_machine_selector.value)] += parseInt(event.target.new_gitter_amount.value);
 
+            let newStateObject = {
+                "appliedGitters": temporaryGitterArray,
+                ...this.props.appReference.state
+            };
 
+            this.props.appReference.setState(newStateObject);
+            localStorage.setItem('gitter_data', JSON.stringify(newStateObject));
+
+        }
 
 
     }
@@ -51,6 +54,8 @@ class NewGitterForm extends React.Component {
                 <h3 className="text-center">Gitter feltöltése</h3>
 
                 <form className="New-drink-form " onSubmit={this.onFormSubmit}>
+
+                    
                     <div className="row p-3">
                         <label className="col-12 mt-2">
                             Gép, amit feltöltöttél:<AddNewGitterSelector machines={this.props.appReference.state.machineNames} />

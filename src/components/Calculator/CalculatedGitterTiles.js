@@ -18,7 +18,7 @@ class CalculatedGitterTiles extends React.Component {
         remainingSeconds.setSeconds(this.props.gitterData.gitterRemainingSecs[this.props.machine]);         
         this.remainingFormattedTime = remainingSeconds.toISOString().slice(11, 19);
 
-        expirationSeconds.setSeconds(Math.floor(this.props.gitterData.shiftStartDate / 1000) + (this.props.gitterData.gitterRemainingGitters[this.props.machine] * (this.props.gitterData.gitterPieceCounter[this.props.machine] / this.props.gitterData.machineNestCounter[this.props.machine] * (this.props.gitterData.machineCycleTime[this.props.machine]))));         
+        expirationSeconds.setSeconds(Math.floor(this.props.gitterData.shiftStartDate / 1000) + (this.props.gitterData.appliedGitters[this.props.machine] * (this.props.gitterData.gitterPieceCounter[this.props.machine] / this.props.gitterData.machineNestCounter[this.props.machine] * (this.props.gitterData.machineCycleTime[this.props.machine]))));         
         this.reamainingExpirationTime = expirationSeconds.toLocaleString('hu-HU', { timeZone: 'Europe/London' })
 
 
@@ -53,9 +53,9 @@ class CalculatedGitterTiles extends React.Component {
                             <div className="row">
                                <div className="col-12 text-center">
                                     <h1>{this.props.gitterData.machineNames[this.props.machine]}</h1>
-                                    <h6>Gitter darabszáma: {parseInt(this.props.gitterData.gitterPieceCounter)}</h6>
-                                    <h6>Gép fészekszáma: {parseInt(this.props.gitterData.machineNestCounter)}</h6>
-                                    <h6>Gép ciklusideje: {parseInt(this.props.gitterData.machineCycleTime)}</h6>                                    
+                                    <h6>Gitter darabszáma: {parseInt(this.props.gitterData.gitterPieceCounter[this.props.machine])}</h6>
+                                    <h6>Gép fészekszáma: {parseInt(this.props.gitterData.machineNestCounter[this.props.machine])}</h6>
+                                    <h6>Gép ciklusideje: {parseInt(this.props.gitterData.machineCycleTime[this.props.machine])}</h6>                                    
                                     <h2>Maradék üres gitter: {this.props.gitterData.gitterRemainingGitters[this.props.machine]} db</h2>
                                     <h2>Utolsó gitter: {this.props.gitterData.gitterRemainingSecs[this.props.machine]>0?this.reamainingExpirationTime:"ELFOGYOTT!!"}</h2>
                                     <h4>Hátralévő idő: {this.props.gitterData.gitterRemainingSecs[this.props.machine]>0?this.remainingFormattedTime:"ELFOGYOTT!!"}</h4>

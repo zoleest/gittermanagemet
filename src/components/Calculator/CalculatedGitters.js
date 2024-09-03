@@ -15,7 +15,7 @@ class CalculatedGitters extends React.Component {
             }
         }
 
-        notEmptyMachines.sort((a,b)=>{return this.props.gitterData.gitterPieceCounter[a] < this.props.gitterData.gitterPieceCounter[b]?-1:1});
+        notEmptyMachines.sort((a,b)=>{return this.props.gitterData.gitterRemainingSecs[a] < this.props.gitterData.gitterRemainingSecs[b]?-1:1});
 
         this.state = {
             "machinesInUse":  notEmptyMachines
