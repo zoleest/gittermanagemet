@@ -18,7 +18,7 @@ class CalculatedGitterTiles extends React.Component {
         remainingSeconds.setSeconds(this.props.gitterData.gitterRemainingSecs[this.props.machine]);         
         this.remainingFormattedTime = remainingSeconds.toISOString().slice(11, 19);
 
-        expirationSeconds.setSeconds(Math.floor(this.props.gitterData.shiftStartDate / 1000) + (this.props.gitterData.appliedGitters[this.props.machine] * (this.props.gitterData.gitterPieceCounter[this.props.machine] / this.props.gitterData.machineNestCounter[this.props.machine] * (this.props.gitterData.machineCycleTime[this.props.machine]))));         
+        expirationSeconds.setSeconds(Math.floor(this.props.gitterData.machineStartDate[this.props.machine]  / 1000) + (this.props.gitterData.appliedGitters[this.props.machine] * (this.props.gitterData.gitterPieceCounter[this.props.machine] / this.props.gitterData.machineNestCounter[this.props.machine] * (this.props.gitterData.machineCycleTime[this.props.machine]))));         
         this.reamainingExpirationTime = expirationSeconds.toLocaleString('hu-HU', { timeZone: 'Europe/London' })
 
 
@@ -38,6 +38,9 @@ class CalculatedGitterTiles extends React.Component {
         removedMachineList.machineCycleTime[this.props.machine] = 0;
         removedMachineList.gitterRemainingGitters[this.props.machine] = 0;
         removedMachineList.notifiedAboutGitters[this.props.machine] = 0;
+        removedMachineList.machineStartDate[this.props.machine] = 0;
+
+     
 
         this.props.appReference.setState(removedMachineList);
         localStorage.setItem('gitter_data', JSON.stringify(this.props.appReference.state));
@@ -57,8 +60,8 @@ class CalculatedGitterTiles extends React.Component {
                                     <h6>Gép fészekszáma: {parseInt(this.props.gitterData.machineNestCounter[this.props.machine])}</h6>
                                     <h6>Gép ciklusideje: {parseInt(this.props.gitterData.machineCycleTime[this.props.machine])}</h6>                                    
                                     <h2>Maradék üres gitter: {this.props.gitterData.gitterRemainingGitters[this.props.machine]} db</h2>
-                                    <h2>Utolsó gitter: {this.props.gitterData.gitterRemainingSecs[this.props.machine]>0?this.reamainingExpirationTime:"ELFOGYOTT!!"}</h2>
-                                    <h4>Hátralévő idő: {this.props.gitterData.gitterRemainingSecs[this.props.machine]>0?this.remainingFormattedTime:"ELFOGYOTT!!"}</h4>
+                                    <h2>Utolsó gitter: <span className="text-danger">{this.props.gitterData.gitterRemainingSecs[this.props.machine]>0?this.reamainingExpirationTime:(this.props.gitterData.appliedGitters[this.props.machine]===0?'Adj hozzá gittereket!':'ELFOGYOTT!')}</span></h2>
+                                    <h4>Hátralévő idő: {this.props.gitterData.gitterRemainingSecs[this.props.machine]>0?this.remainingFormattedTime:''}</h4>
                                     <form className="New-drink-form " onSubmit={this.onFormSubmit}>
                                         <input type="submit" className="btn btn-danger w-75 text-center mx-auto d-block" value="Gép kivétele"/>
                                      </form>

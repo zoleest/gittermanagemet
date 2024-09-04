@@ -16,8 +16,10 @@ class AddNewGitterSelector extends React.Component {
             <select className="New-gitter-form-selector form-select" name="new_gitter_machine_selector" required>
 
                 {this.props.machines.map((machine, index) => {
-                    return <option value={index}
-                                   key={index}>{machine}</option>
+                   if(this.props.appReference.state.gitterPieceCounter[index] > 0){
+                        return <option value={index}
+                        key={index}>{machine}</option>
+                   } 
                 })}
             </select>
         );

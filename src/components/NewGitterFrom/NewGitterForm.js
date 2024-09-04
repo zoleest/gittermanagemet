@@ -36,6 +36,7 @@ class NewGitterForm extends React.Component {
 
             let newStateObject = {
                 "appliedGitters": temporaryGitterArray,
+                "allAppliedGitters": this.props.appReference.state.allAppliedGitters += parseInt(event.target.new_gitter_amount.value), 
                 ...this.props.appReference.state
             };
 
@@ -58,7 +59,7 @@ class NewGitterForm extends React.Component {
                     
                     <div className="row p-3">
                         <label className="col-12 mt-2">
-                            Gép, amit feltöltöttél:<AddNewGitterSelector machines={this.props.appReference.state.machineNames} />
+                            Gép, amit feltöltöttél:<AddNewGitterSelector appReference={this.props.appReference} machines={this.props.appReference.state.machineNames} />
                         </label>
                         <label className="col-12 mt-2">
                             Kivitt mennyiség: <input className="form-control" name="new_gitter_amount"

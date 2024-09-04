@@ -19,12 +19,13 @@ class App extends React.Component {
 
             this.state = {
 
-                "shiftStartDate": Date.now() + (this.dateOffset * 60 * 1000),
-
+                
+                "machineStartDate": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 "gitterPieceCounter": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 "machineCycleTime": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 "machineNestCounter": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 
+                "allAppliedGitters": 0,
                 "appliedGitters": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 "gitterRemainingSecs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 "gitterRemainingGitters": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],              
@@ -75,12 +76,13 @@ class App extends React.Component {
         localStorage.removeItem('gitter_data');
         this.setState({
 
-            "shiftStartDate": Date.now() + (this.dateOffset * 60 * 1000),
 
+            "machineStartDate": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "gitterPieceCounter": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "machineCycleTime": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "machineNestCounter": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 
+            "allAppliedGitters": 0,
             "appliedGitters": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "gitterRemainingSecs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "gitterRemainingGitters": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -139,7 +141,7 @@ class App extends React.Component {
                 if (this.state.appliedGitters[machineNumber] > 0) {
 
                     
-                    let remainingTime = Math.floor((this.state.shiftStartDate / 1000) + ((this.state.appliedGitters[machineNumber]) * (this.state.gitterPieceCounter[machineNumber] / this.state.machineNestCounter[machineNumber] * (this.state.machineCycleTime[machineNumber]))) - (actualTimestamp / 1000));
+                    let remainingTime = Math.floor((this.state.machineStartDate[machineNumber] / 1000) + ((this.state.appliedGitters[machineNumber]) * (this.state.gitterPieceCounter[machineNumber] / this.state.machineNestCounter[machineNumber] * (this.state.machineCycleTime[machineNumber]))) - (actualTimestamp / 1000));
                     tempNotifications[machineNumber] = this.state.notifiedAboutGitters[machineNumber]?1:0;
                     if (remainingTime > 1) {
                         tempRemainingTimes[machineNumber] = remainingTime;

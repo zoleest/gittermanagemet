@@ -10,6 +10,8 @@ class GitterPropSetFrom extends React.Component {
         this.onSubmitEvent = this.onSubmitEvent.bind(this);
     }
 
+    dateObject = new Date();
+    dateOffset = Math.abs(this.dateObject.getTimezoneOffset());
 
 
     async onSubmitEvent(event) {
@@ -21,11 +23,17 @@ class GitterPropSetFrom extends React.Component {
             let temporaryGitterPieceCounter = this.props.appReference.state.gitterPieceCounter;
             let temporaryMachineCycleTime = this.props.appReference.state.machineCycleTime;
             let temporaryMachineNestCounter = this.props.appReference.state.machineNestCounter;
+            let temporaryMachineStartDate = this.props.appReference.state.machineStartDate;
 
             temporaryGitterPieceCounter[parseInt(event.target.gitter_prop_machine_selector.value)] = parseInt(event.target.piece_count.value);
             temporaryMachineCycleTime[parseInt(event.target.gitter_prop_machine_selector.value)] = parseInt(event.target.cycle_time.value);
             temporaryMachineNestCounter[parseInt(event.target.gitter_prop_machine_selector.value)] = parseInt(event.target.nest.value);
-
+            
+            if(temporaryMachineStartDate[parseInt(event.target.gitter_prop_machine_selector.value)] === 0){
+                temporaryMachineStartDate[parseInt(event.target.gitter_prop_machine_selector.value)]  = Date.now() + (this.dateOffset * 60 * 1000);
+            }
+            
+            
             let newStateObject = {
                 "gitterPieceCounter": temporaryGitterPieceCounter,
                 "machineCycleTime": temporaryMachineCycleTime,
