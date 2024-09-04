@@ -147,7 +147,7 @@ class App extends React.Component {
                         tempRemainingTimes[machineNumber] = remainingTime;
                         tempRemainingGitters[machineNumber] = Math.floor(remainingTime / (this.state.gitterPieceCounter[machineNumber] / this.state.machineNestCounter[machineNumber] * (this.state.machineCycleTime[machineNumber])));
                         
-                        if(tempRemainingGitters[machineNumber] === 0 && !this.state.notifiedAboutGitters[machineNumber]){
+                        if(tempRemainingGitters[machineNumber] === 0 && this.state.notifiedAboutGitters[machineNumber] === 0){
                             
                             tempNotifications[machineNumber] = 1;
                             
