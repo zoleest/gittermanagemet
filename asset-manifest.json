@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/gittermanagemet/static/css/main.3f44d46f.css",
-    "main.js": "/gittermanagemet/static/js/main.fc311d61.js",
+    "main.js": "/gittermanagemet/static/js/main.d9bd5874.js",
     "index.html": "/gittermanagemet/index.html",
     "main.3f44d46f.css.map": "/gittermanagemet/static/css/main.3f44d46f.css.map",
-    "main.fc311d61.js.map": "/gittermanagemet/static/js/main.fc311d61.js.map"
+    "main.d9bd5874.js.map": "/gittermanagemet/static/js/main.d9bd5874.js.map"
   },
   "entrypoints": [
     "static/css/main.3f44d46f.css",
-    "static/js/main.fc311d61.js"
+    "static/js/main.d9bd5874.js"
   ]
 }
