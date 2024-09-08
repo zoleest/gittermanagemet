@@ -10,13 +10,34 @@ class CalculatedGitters extends React.Component {
         let notEmptyMachines = [];
         for(let arrayChecker = 0; arrayChecker < this.props.gitterData.gitterPieceCounter.length; arrayChecker++){
             if(this.props.gitterData.gitterPieceCounter[arrayChecker] > 0){
-                notEmptyMachines.push(arrayChecker);
+                notEmptyMachines.push(["gitter", arrayChecker]);
                
             }
         }
 
-        notEmptyMachines.sort((a,b)=>{return this.props.gitterData.gitterRemainingSecs[a] < this.props.gitterData.gitterRemainingSecs[b]?-1:1});
+        for(let arrayChecker = 0; arrayChecker < this.props.gitterData.machineRepairRemainingSecs.length; arrayChecker++){
+            if(this.props.gitterData.machineRepairRemainingSecs[arrayChecker] > 0){
+                notEmptyMachines.push(["repair", arrayChecker]);
+               
+            }
+        }
 
+        notEmptyMachines.sort((a,b)=>{
+
+            if(a[0] == "gitter" && b[0] == "gitter") return this.props.gitterData.gitterRemainingSecs[a[1]] < this.props.gitterData.gitterRemainingSecs[b[1]]?-1:1;
+            if(a[0] == "repair" && b[0] == "gitter") return this.props.gitterData.machineRepairRemainingSecs[a[1]] < this.props.gitterData.gitterRemainingSecs[b[1]]?-1:1;    
+            if(a[0] == "gitter" && b[0] == "repair") return this.props.gitterData.gitterRemainingSecs[a[1]] < this.props.gitterData.machineRepairRemainingSecs[b[1]]?-1:1;    
+            if(a[0] == "repair" && b[0] == "repair") return this.props.gitterData.machineRepairRemainingSecs[a[1]] < this.props.gitterData.machineRepairRemainingSecs[b[1]]?-1:1;    
+
+
+        });
+
+            
+            
+            
+            
+            
+            
         this.state = {
             "machinesInUse":  notEmptyMachines
         }

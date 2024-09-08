@@ -4,6 +4,7 @@ import React from 'react';
 import CalculatorDisplay from "./components/Calculator/CalculatorDisplay";
 import GitterPropSetForm from "./components/GitterPropSetFrom/GitterPropSetFrom";
 import addNotification from 'react-push-notification';
+import MachineRepairForm from './components/MachineRepairTime/MachineRepairForm';
 
 
 class App extends React.Component {
@@ -30,6 +31,9 @@ class App extends React.Component {
                 "gitterRemainingSecs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 "gitterRemainingGitters": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],              
                 "notifiedAboutGitters": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+
+                "machineRepairStartDate":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                "machineRepairRemainingSecs":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 
                 "machineNames": [
                     "1300",
@@ -87,6 +91,9 @@ class App extends React.Component {
             "gitterRemainingSecs": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "gitterRemainingGitters": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             "notifiedAboutGitters": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            
+            "machineRepairStartDate":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "machineRepairRemainingSecs":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 
             "machineNames": [
                 "1300",
@@ -234,6 +241,10 @@ class App extends React.Component {
                         <div className="New-drink-form-container mb-4 ">
                             <NewGitterForm appReference={this} />
                         </div>
+                        <div className="New-drink-form-container mb-4 ">
+                            <MachineRepairForm appReference={this} />
+                        </div>
+                        
                         
                       
 
