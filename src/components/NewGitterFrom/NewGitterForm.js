@@ -31,13 +31,16 @@ class NewGitterForm extends React.Component {
         if (window.confirm(`Kivittél ${parseInt(event.target.new_gitter_amount.value)} gittert a(z) [${this.props.appReference.state.machineNames[parseInt(event.target.new_gitter_machine_selector.value)]}] gépre?`)) {
 
             let temporaryGitterArray = this.props.appReference.state.appliedGitters;
+            let temporarynotifiedAboutGitters = this.props.appReference.state.notifiedAboutGitters;
 
             temporaryGitterArray[parseInt(event.target.new_gitter_machine_selector.value)] += parseInt(event.target.new_gitter_amount.value);
-
+            temporarynotifiedAboutGitters[parseInt(event.target.new_gitter_machine_selector.value)] = 0;
+           
             let newStateObject = {
+           
                 "appliedGitters": temporaryGitterArray,
                 "allAppliedGitters": this.props.appReference.state.allAppliedGitters += parseInt(event.target.new_gitter_amount.value), 
-                ...this.props.appReference.state
+                "notifiedAboutGitters": temporarynotifiedAboutGitters
             };
 
             this.props.appReference.setState(newStateObject);

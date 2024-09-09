@@ -95,5 +95,55 @@
 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
+
+<script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('%PUBLIC_URL%/worker.js').then(function (registration) {
+
+          console.log('Worker registration successful', registration.scope);
+        }, function (err) {
+          console.log('Worker registration failed', err);
+        }).catch(function (err) {
+          console.log(err);
+        });
+      });
+    } else {
+      console.log('Service Worker is not supported by browser.');
+    }
+
+    function checkForServiceAvailable ()
+{
+    if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+        return false;
+      }
+    
+      return true;
+    
+}
+
+
+  function askPermission() {
+    return new Promise(function (resolve, reject) {
+      const permissionResult = Notification.requestPermission(function (result) {
+        resolve(result);
+      });
+  
+      if (permissionResult) {
+        permissionResult.then(resolve, reject);
+      }
+    }).then(function (permissionResult) {
+      if (permissionResult !== 'granted') {
+        throw new Error("Nem kaptunk engedélyt a PUSH értesítésekhez!");
+      }
+    });
+  }
+  
+  if(checkForServiceAvailable()){
+    askPermission();
+}
+   
+  </script>
+
 </body>
 </html>
